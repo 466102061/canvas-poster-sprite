@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"/>
+<link rel="icon" href=""/>
+<title>example</title>
+<style type="text/css">
+*,*:before,*:after{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.mbody{
+	width: 100%;
+	max-width: 487px;
+	margin: 0 auto;
+}
+.hd{
+	text-align: center;
+	font-size: 24px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.nav-title{
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.div{
+	display: none;
+}
+.title{
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.div > canvas,
+.div > img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+</style>
+</head>
+
+<body>
+<div class="mbody">
+	<h2 class="hd">使用案例及说明</h2>
+	<h3 class="nav-title">一、微信(wx)小程序端</h3>
+	<h6 class="title">使用组件：wx-canvas</h6>
+	<h3 class="nav-title">二、uniapp端</h3>
+	<h6 class="title">使用组件：uni-canvas</h6>
+	<h3 class="nav-title">三、web(h5)端</h3>
+	<div class="div" id="J_div-1">
+		<h6 class="title">基础用法 ： 二维码(底部中间)海报<a href="./img/bg-zm.jpg" target="_blank">点击查看原图</a></h6>
+	</div>
+	<div class="div" id="J_div-2">
+		<h6 class="title">高级用法 ： (商品列表)海报<a href="./img/tem.jpeg" target="_blank">点击查看模板</a></h6>
+	</div>
+</div>
+<script type="text/javascript" src="./model.js"></script>
+<script type="text/javascript" src="../dist/web-canvas-poster-sprite.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	 let CanvasPosterSprite = window.CanvasPosterSprite.default;//umd打包模式，模式导出__esModule模块
+
+     //基本用法 - 二维码(底部中间)-海报
+     new CanvasPosterSprite({
+        width: 900,
+        height: 1600,
+        paths : {
+          circle : [
+            {
+              color: "#fff",
+              h: 56,
+              r: 28,
+              type: "fill",
+              w: 56,
+              x: 214,
+              y: 1158
+            }
+          ],
+          rect : [
+            {
+              color: "#e6e6e6",
+              h: 252,
+              r: 0,
+              type: "fill",
+              w: 252,
+              x: 324,
+              y: 1244
+            },
+            {
+              color: "#fff",
+              h: 250,
+              r: 0,
+              type: "fill",
+              w: 250,
+              x: 325,
+              y: 1245
+            },
+            {
+              color: "rgba(0, 0, 0, .15)",
+              h: 68,
+              r: 34,
+              type: "fill",
+              w: 488,
+              x: 206,
+              y: 1152
+            }
+          ],
+          triangle : [
+            {
+              type: "fill",
+              color: "rgba(0, 0, 0, .15)",
+              points : [
+                {x: 450, y: 1233},
+                {x: 462, y: 1220},
+                {x: 439, y: 1220}
+              ]
+            }
+          ]
+        },
+        pics : [
+          {
+            h: 1600,
+            preload: true,
+            src: "./img/bg-zm.jpg",
+            w: 900,
+            x: 0,
+            y: 0
+          },
+          {
+            h: 244,
+            src: "./img/qrcode-zm.png",
+            w: 244,
+            x: 328,
+            y: 1248
+          },
+          {
+            h: 54,
+            r: 27,
+            src: "./img/icon.jpeg",
+            w: 54,
+            x: 215,
+            y: 1159
+          }
+        ],
+        texts: [
+          {
+            align: "center",
+            color: "#000",
+            font: "28px 微软雅黑",
+            text: "联系方式：466102061@qq.com",
+            w: 250,
+            x: 328,
+            y: 1538
+          },
+          {
+            color: "#FFE506",
+            font: "26px 微软雅黑",
+            text: "小小咖侠侣店",
+            w: 156,
+            x: 280,
+            y: 1187
+          },
+          {
+            color: "#fff",
+            font: "26px 微软雅黑",
+            text: "邀请你注册侠侣联盟",
+            w: 234,
+            x: 436,
+            y: 1187
+          }
+        ],
+        callback: function(err, res){
+  	      console.log("海报合成结果：", err, res);
+  	      var oDiv = document.getElementById("J_div-1");
+  	      if(err){
+  	        // console.log("合成海报出错了：", err);
+
+  	       	//静态html，浏览器安全考虑:
+  	       	//SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
+  	        if(res && res.canvas){
+  	        	// document.body.appendChild(res.canvas);
+  	        	oDiv.appendChild(res.canvas);
+  	        	oDiv.style.display = 'block';
+  	        }
+  	        return;
+  	      }
+
+  	      //导出base64
+  	      var img = document.createElement("img");
+  	      img.src = res.tempFilePath;
+  	      // document.body.appendChild(img);
+  	      oDiv.appendChild(img);
+  	      oDiv.style.display = 'block';
+        }
+     });
+
+     //高级用法 - (商品列表)海报
+     var param = getHotParam(proData);
+     param.callback = function(err, res){
+      console.log("海报合成结果：", err, res);
+      var oDiv = document.getElementById("J_div-2");
+      if(err){
+        // console.log("合成海报出错了：", err);
+
+       	//静态html，浏览器安全考虑:
+       	//SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
+        if(res && res.canvas){
+        	// document.body.appendChild(res.canvas);
+        	oDiv.appendChild(res.canvas);
+        	oDiv.style.display = 'block';
+        }
+        return;
+      }
+
+      //导出base64
+      var img = document.createElement("img");
+      img.src = res.tempFilePath;
+      // document.body.appendChild(img);
+      oDiv.appendChild(img);
+      oDiv.style.display = 'block';
+    }
+	 new CanvasPosterSprite(param);	
+}
+</script>
+</body>
+
+</html>
