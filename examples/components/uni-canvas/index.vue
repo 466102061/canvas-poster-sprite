@@ -43,6 +43,9 @@ export default {
     watch: {
 	},
     methods: {
+		//fix: Property or method "toJSON" is not defined
+		//https://ask.dcloud.net.cn/question/73642
+		toJSON(){},
     },
     mounted() { 
       var self = this;

@@ -90,6 +90,9 @@ function uniGetImageInfo(src, ERROR_TYPE, callback) {
 
 // app-plus 下载图片到本地，并且指定路径与图片名称
 function plusDownLoader(src, ERROR_TYPE, callback){
+	if(typeof plus != 'object'){
+		return;
+	}
 	var id = Math.random().toString(16).substr(2);
 	//保存文件路径仅支持以"_downloads/"、"_doc/"、"_documents/"开头的字符串
 	//如果指定的文件已经存在，则自动在文件名后面加"(i)"，其中i为数字，如果文件名称后面已经是此格式，则数字i递增

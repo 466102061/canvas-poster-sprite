@@ -29,7 +29,7 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
-| appPlus | Boolean | -- | false | app，whether transform pictures to base64，and canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
+| appPlus | Boolean | -- | false | app，whether transform pictures to base64 first，and draw to canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
 | pixelRatio | Number | -- | 2 | app pixelRatio. |
 
 + uni | wx
@@ -49,7 +49,7 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 | fileType | String | -- | jpeg | type of pictures. eg.jpeg、png、gif |
 | quality | Number | -- | 1 | quality of pictures. |
 | pics | Array | -- | -- | pictures |
-| pics[i].preload | Boolean | -- | -- | whether first to canvas. |
+| pics[i].preload | Boolean | -- | -- | Whether draw first to canvas. |
 | pics[i].src | String | yes | -- | pictures src. |
 | pics[i].x | String | yes | -- | pictures x-axis. |
 | pics[i].y | String | yes | -- | pictures y-axis. |

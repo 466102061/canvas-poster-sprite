@@ -16,7 +16,7 @@ class CanvasPosterSprite{
 		this.drawPath = {};					//路径方法
 		this.drawText = {};					//文本方法
 		this.canvasApi = {};				//画布api
-		this.options.isDebug && console.log("配置：",setting);
+		// this.options.isDebug && console.log("配置：",setting);
 		return this;
 	}
 	//画图
@@ -90,7 +90,7 @@ class CanvasPosterSprite{
 
 	    //拿到所有绘制图片资源
 	    parallelTasks(tasks, function (err, res) {
-	      opts.isDebug && console.log('imgs：', res);
+	      // opts.isDebug && console.log('imgs：', res);
 
 	      let result = {};
 	      //异常直接返回
