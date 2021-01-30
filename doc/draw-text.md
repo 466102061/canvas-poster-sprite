@@ -29,7 +29,7 @@
 | y | Number | yes | -- | y轴位置 |
 | w | Number | yes | -- | 宽度 |
 | text | String | yes | -- | 文本 |
-| multiple | Boolean | yes | false | 控制是否显示多行 |
+| multiple | Boolean | yes | false | 【控制是否显示多行】 |
 | clamp | Number | -- | -1 | 大于0，显示clamp行,外加... |
 | font | String | -- | 14 | 字体、大小等 |
 | color | String | -- | black | 字体颜色 |

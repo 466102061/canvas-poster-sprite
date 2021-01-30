@@ -42,8 +42,8 @@
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
 | :----: | :----: | :----: | :----: | :---- |
 | width | Number | -- | 640 | 画布宽度 |
-| height | Number | -- | 640 | 画布宽度 |
-| bgColor | String | -- | #fff | 画布背景 |
+| height | Number | -- | 640 | 画布高度 |
+| bgColor | String | -- | #fff | 画布背景色 |
 | fileType | String | -- | jpeg | 图片格式(jpeg、png、gif) |
 | quality | Number | -- | 1 | 导出图片质量 |
 | pics | Array | -- | -- | 图片资源 |
