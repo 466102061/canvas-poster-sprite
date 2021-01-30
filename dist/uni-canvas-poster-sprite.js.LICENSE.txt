@@ -2,7 +2,7 @@
  * @desc canvas合成海报插件
  * @version 1.0.0
  * @author 小小咖 466102061@qq.com
- * @time 2021-1-30 10:54:06
+ * @time 2021-1-30 18:02:05
  *
  * @example
  * new CanvasPosterSprite({
