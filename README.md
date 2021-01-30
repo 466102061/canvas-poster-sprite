@@ -1,66 +1,69 @@
-### canvas海报合成精灵
+### canvas-poster-sprite
+A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.
 
-#### 功能简介
-+ 多端支持：[uni-uniapp | wx-微信小程序 | web-h5](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
-+ 功能支持：图片、路径(矩形、圆形、三角/多边形)、文本(单行、多行)
-+ 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
+#### Introduction | [简体中文](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/README-ZH.md)
++ Multiterminal support：[uni-uniapp | wx-miniprogram | web-h5](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
++ Canvas support：draw texts, paths and pictures to canvas
++ Canvas z-index：pictures(preload=true) < paths < pictures < texts
 
-#### 注意事项
-+ 文本暂不支持艺术体，艺术体可用图片代替
-+ 图片资源支持(http|https注意跨域问题)，只有web端支持本地资源(本地service，请用require导入)
-+ 海报背景图片加上preload=true字段，以保证第一个被画上
-+ 画布的宽高最好设置成海报图的宽和高，这样最终合成的图不会有多余的空白
-+ 可通过字段fileType和quality，来控制导出图片质量大小，一般jpeg格式图片质量相对较低
+#### Notes
++ Text does not support art form, art form can be replaced by pictures.
++ Pictures resources support | HTTPS (HTTP attention to the problem of cross domain), only the web side support local resources (local service, please use the require import)
++ Pictures(preload=true)，can be first drawed to canvas.
++ The width and height of the canvas should be the same as the width and height of the poster image, so that the final composite image will not have excess white space
++ The quality of exported images can be controlled through fields FileType and Quality. Generally, the quality of JPEG images is relatively low.
 
-#### 使用说明
-+ uni导入：import CanvasPosterSprite from 'dis/uni-canvas-poster-sprite.js'
-+ wx导入：import CanvasPosterSprite from 'dist/wx-canvas-poster-sprite.js'
-+ web导入：import CanvasPosterSprite from 'dist/web-canvas-poster-sprite.js'
-+ 初始化实例：new CanvasPosterSprite(setting)
+#### Useage
++ install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite
++ web：import CanvasPosterSprite from 'canvas-poster-sprite'
++ wx：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
++ uni：import CanvasPosterSprite from 'canvas-poster-sprite/dist/uni-canvas-poster-sprite.js'
++ instance：new CanvasPosterSprite(setting)
 
-#### 参考案例
-+ uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-+ wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-+ web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
-#### 参数(setting)说明
+#### examples
++ uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ web：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
+#### setting
 + uni
 
-| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
+| param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
-| appPlus | Boolean | -- | false | app端，是否先把图片转换成base64，再画图，[fix：Android10 真机 uni.canvasToTempFilePath报错](https://ask.dcloud.net.cn/question/103303) |
-| pixelRatio | Number | -- | 2 | (app真机)设备分辨率 |
+| appPlus | Boolean | -- | false | app，whether transform pictures to base64，and canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
+| pixelRatio | Number | -- | 2 | app pixelRatio. |
 
 + uni | wx
 
-| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
+| param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
-| self | Object | yes | -- | 当前运行环境 - this |
-| canvasId | String | yes | -- | canvas组件实例 - canvas-id |
+| self | Object | yes | -- | content - this |
+| canvasId | String | yes | -- | canvas-id |
 
 + uni | wx | web
 
-| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
+| param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
-| width | Number | -- | 640 | 画布宽度 |
-| height | Number | -- | 640 | 画布高度 |
-| bgColor | String | -- | #fff | 画布背景色 |
-| fileType | String | -- | jpeg | 图片格式(jpeg、png、gif) |
-| quality | Number | -- | 1 | 导出图片质量 |
-| pics | Array | -- | -- | 图片资源 |
-| pics[i].preload | Boolean | -- | -- | 是否【优先】加载并在画布画上 |
-| pics[i].src | String | yes | -- | 图片-src |
-| pics[i].x | String | yes | -- | 图片-x轴位置 |
-| pics[i].y | String | yes | -- | 图片-y轴位置 |
-| pics[i].w | String | -- | -- | 图片-宽度 |
-| pics[i].h | String | -- | -- | 图片-高度 |
-| texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
-| paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
-| callback | Function | -- | -- | 回调，返回(err, res) |
+| width | Number | -- | 640 | canvas width. |
+| height | Number | -- | 640 | canvas height. |
+| bgColor | String | -- | #fff | canvas background color. |
+| fileType | String | -- | jpeg | type of pictures. eg.jpeg、png、gif |
+| quality | Number | -- | 1 | quality of pictures. |
+| pics | Array | -- | -- | pictures |
+| pics[i].preload | Boolean | -- | -- | whether first to canvas. |
+| pics[i].src | String | yes | -- | pictures src. |
+| pics[i].x | String | yes | -- | pictures x-axis. |
+| pics[i].y | String | yes | -- | pictures y-axis. |
+| pics[i].w | String | -- | -- | pictures width. |
+| pics[i].h | String | -- | -- | pictures width. |
+| texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
+| paths | Object | -- | -- | paths. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
+| callback | Function | -- | -- | callback (err, res) |
 
-#### 效果预览
 
-+ 基础用法：二维码(底部中间)海报  
+#### screenshot
+
++ Basic usage  
 ![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-1.png)
-+ 高级用法：(商品列表)海报    
++ Advanced Usage   
 ![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-2.png)
 
