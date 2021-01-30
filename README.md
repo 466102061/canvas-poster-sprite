@@ -1,7 +1,7 @@
 ### canvas海报合成精灵
 
 #### 功能简介
-+ 多端支持：uni-uniapp | wx-微信小程序 | web-h5
++ 多端支持：[uni-uniapp | wx-微信小程序 | web-h5](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
 + 功能支持：图片、路径(矩形、圆形、三角/多边形)、文本(单行、多行)
 + 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
 
@@ -19,9 +19,9 @@
 + 初始化实例：new CanvasPosterSprite(setting)
 
 #### 参考案例
-+ uni端：examples/components/uni-canvas
-+ wx端：examples/components/wx-canvas
-+ web端：examples/index.html
++ uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
 #### 参数(setting)说明
 + uni
 
@@ -53,11 +53,14 @@
 | pics[i].y | String | yes | -- | 图片-y轴位置 |
 | pics[i].w | String | -- | -- | 图片-宽度 |
 | pics[i].h | String | -- | -- | 图片-高度 |
-| texts | Array | -- | -- | 文本，参考doc文件夹下draw-text.md |
-| paths | Object | -- | -- | 路径，参考doc文件夹下draw-path.md |
+| texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
+| paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | callback | Function | -- | -- | 回调，返回(err, res) |
 
 #### 效果预览
-+ 基础用法：二维码(底部中间)海报
-+ 高级用法：(商品列表)海报
+
++ 基础用法：二维码(底部中间)海报  
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-1.png)
++ 高级用法：(商品列表)海报    
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-2.png)
 
