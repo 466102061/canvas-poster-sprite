@@ -8,9 +8,9 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 
 #### Notes
 + Text does not support art form, art form can be replaced by pictures.
-+ Pictures resources support | HTTPS (HTTP attention to the problem of cross domain), only the web side support local resources (local service, please use the require import)
++ Pictures resources support | HTTPS (HTTP attention to the problem of cross domain), only the web side support local resources (local service, please use the require import).
 + Pictures(preload=true)，can be first drawed to canvas.
-+ The width and height of the canvas should be the same as the width and height of the poster image, so that the final composite image will not have excess white space
++ The width and height of the canvas should be the same as the width and height of the poster image, so that the final composite image will not have excess white space.
 + The quality of exported images can be controlled through fields FileType and Quality. Generally, the quality of JPEG images is relatively low.
 
 #### Useage
@@ -19,7 +19,40 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 + wx：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
 + uni：import CanvasPosterSprite from 'canvas-poster-sprite/dist/uni-canvas-poster-sprite.js'
 + instance：new CanvasPosterSprite(setting)
+```
+new CanvasPosterSprite({
+   /* uni|wx */
+   self: this, 
+   canvasId: 'canvas-id',
 
+   /* uni|wx|web */
+   width: 640,
+   height: 640,
+   pics: [
+     {src: 'poster...', x: 0, y: 0, preload: true},
+     {src: 'qrcode...', x: 340, y: 500, w: 100, h: 100},
+   ],
+   paths: {
+     rect: [
+        {x: 340, y: 500, w: 200, h: 200, r: 10, color: "#000"}
+     ],
+     circle: [
+        {x: 200, y: 200, r: 50, color: "#000", type: "fill"}
+     ],
+   },
+   texts: [
+     {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
+   ],
+   callback: function(err, res){
+     if(err){
+       console.log("canvas-fail：", err);
+       return;
+     }
+     let { tempFilePath, canvas } = res;
+     console.log("canvas-success：", res);
+  }
+})
+```
 #### examples
 + uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
@@ -51,12 +84,12 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 | pics | Array | -- | -- | pictures |
 | pics[i].preload | Boolean | -- | -- | Whether draw first to canvas. |
 | pics[i].src | String | yes | -- | pictures src. |
-| pics[i].x | String | yes | -- | pictures x-axis. |
-| pics[i].y | String | yes | -- | pictures y-axis. |
-| pics[i].w | String | -- | -- | pictures width. |
-| pics[i].h | String | -- | -- | pictures width. |
-| texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
+| pics[i].x | Number | yes | -- | pictures x-axis. |
+| pics[i].y | Number | yes | -- | pictures y-axis. |
+| pics[i].w | Number | -- | -- | pictures width. |
+| pics[i].h | Number | -- | -- | pictures width. |
 | paths | Object | -- | -- | paths. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
+| texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | callback (err, res) |
 
 
