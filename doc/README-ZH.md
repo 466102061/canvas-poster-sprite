@@ -12,6 +12,7 @@
 + 海报背景图片加上preload=true字段，以保证第一个被画上
 + 画布的宽高最好设置成海报图的宽和高，这样最终合成的图不会有多余的空白
 + 可通过字段fileType和quality，来控制导出图片质量大小，一般jpeg格式图片质量相对较低
++ uni版本，内部封装的是uni的API，理论上来说，应该是支持app-vue(已验证)、web(未验证)、小程序(未验证)
 
 #### 使用说明
 + install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite

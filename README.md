@@ -12,6 +12,7 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 + Pictures(preload=true)，can be first drawed to canvas.
 + The width and height of the canvas should be the same as the width and height of the poster image, so that the final composite image will not have excess white space.
 + The quality of exported images can be controlled through fields FileType and Quality. Generally, the quality of JPEG images is relatively low.
++ Inside uni, we call uni's API, it should be support app-vue, web and miniprogram. 
 
 #### Useage
 + install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite
