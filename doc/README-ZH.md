@@ -19,12 +19,47 @@
 + uni导入：import CanvasPosterSprite from 'canvas-poster-sprite/dis/uni-canvas-poster-sprite.js'
 + wx导入：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
 + 初始化实例：new CanvasPosterSprite(setting)
+```
+new CanvasPosterSprite({
+   /* uni|wx */
+   self: this, 
+   canvasId: 'canvas-id',
+
+   /* uni|wx|web */
+   width: 640,
+   height: 640,
+   pics: [
+     {src: 'poster...', x: 0, y: 0, preload: true},
+     {src: 'qrcode...', x: 340, y: 500, w: 100, h: 100},
+   ],
+   paths: {
+     rect: [
+        {x: 340, y: 500, w: 200, h: 200, r: 10, color: "#000"}
+     ],
+     circle: [
+        {x: 200, y: 200, r: 50, color: "#000", type: "fill"}
+     ],
+   },
+   texts: [
+     {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
+   ],
+   callback: function(err, res){
+     if(err){
+       console.log("canvas-fail：", err);
+       return;
+     }
+     let { tempFilePath, canvas } = res;
+     console.log("canvas-success：", res);
+  }
+})
+```
 
 #### 参考案例
 + uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
 #### 参数(setting)说明
+
 + uni
 
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
@@ -51,12 +86,12 @@
 | pics | Array | -- | -- | 图片资源 |
 | pics[i].preload | Boolean | -- | -- | 是否【优先】加载并在画布画上 |
 | pics[i].src | String | yes | -- | 图片-src |
-| pics[i].x | String | yes | -- | 图片-x轴位置 |
-| pics[i].y | String | yes | -- | 图片-y轴位置 |
-| pics[i].w | String | -- | -- | 图片-宽度 |
-| pics[i].h | String | -- | -- | 图片-高度 |
-| texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
+| pics[i].x | Number | yes | -- | 图片-x轴位置 |
+| pics[i].y | Number | yes | -- | 图片-y轴位置 |
+| pics[i].w | Number | -- | -- | 图片-宽度 |
+| pics[i].h | Number | -- | -- | 图片-高度 |
 | paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
+| texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | 回调，返回(err, res) |
 
 #### 效果预览

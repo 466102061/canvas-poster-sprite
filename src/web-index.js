@@ -9,7 +9,7 @@ import { drawApiMap, canvasBaseApiMap } from './canvas-api/web-canvas-api-map.js
 class CanvasPosterSprite extends BaseCanvasPosterSprite{
 	constructor(options){
 		if(!objectProtoType.isObject(options)){
-	      console.error("参数错误，参数必须是对象！");
+	      console.error("参数错误，参数必须是对象！");   
 	      return;
 		}
 		let opts = merge({}, setting, options);
