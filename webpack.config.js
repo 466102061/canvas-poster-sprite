@@ -10,11 +10,11 @@ const bannerPlugin = new webpack.BannerPlugin(
 
 @example
 new CanvasPosterSprite({
-   /* uni|wx */
+   /* wx|uni */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* uni|wx|web */
+   /* web|wx|uni */
    width: 640,
    height: 640,
    pics: [
