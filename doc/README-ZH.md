@@ -2,7 +2,7 @@
 一个canvas海报合成插件，可以绘制文本，路径和图片到画布，并导出图片数据。
 
 #### 功能简介 | [English](https://github.com/466102061/canvas-poster-sprite#readme)
-+ 多端支持：[uni-uniapp | wx-微信小程序 | web-h5](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
++ 多端支持：[web-h5 | wx-微信小程序 | uni-uniapp](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
 + 功能支持：图片、路径(矩形、圆形、三角/多边形)、文本(单行、多行)
 + 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
 
@@ -16,16 +16,16 @@
 #### 使用说明
 + install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite
 + web导入：import CanvasPosterSprite from 'canvas-poster-sprite'
-+ uni导入：import CanvasPosterSprite from 'canvas-poster-sprite/dis/uni-canvas-poster-sprite.js'
 + wx导入：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
++ uni导入：import CanvasPosterSprite from 'canvas-poster-sprite/dis/uni-canvas-poster-sprite.js'
 + 初始化实例：new CanvasPosterSprite(setting)
 ```
 new CanvasPosterSprite({
-   /* uni|wx */
+   /* wx|uni */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* uni|wx|web */
+   /* web|wx|uni */
    width: 640,
    height: 640,
    pics: [
@@ -55,26 +55,12 @@ new CanvasPosterSprite({
 ```
 
 #### 参考案例
-+ uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-+ wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
++ wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 #### 参数(setting)说明
 
-+ uni
-
-| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
-| :----: | :----: | :----: | :----: | :---- |
-| appPlus | Boolean | -- | false | app端，是否先把图片转换成base64，再画图，[fix：Android10 真机 uni.canvasToTempFilePath报错](https://ask.dcloud.net.cn/question/103303) |
-| pixelRatio | Number | -- | 2 | (app真机)设备分辨率 |
-
-+ uni | wx
-
-| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
-| :----: | :----: | :----: | :----: | :---- |
-| self | Object | yes | -- | 当前运行环境 - this |
-| canvasId | String | yes | -- | canvas组件实例 - canvas-id |
-
-+ uni | wx | web
++ web | wx | uni
 
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
 | :----: | :----: | :----: | :----: | :---- |
@@ -93,6 +79,20 @@ new CanvasPosterSprite({
 | paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | 回调，返回(err, res) |
+
++ wx | uni
+
+| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
+| :----: | :----: | :----: | :----: | :---- |
+| self | Object | yes | -- | 当前运行环境 - this |
+| canvasId | String | yes | -- | canvas组件实例 - canvas-id |
+
++ uni
+
+| 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
+| :----: | :----: | :----: | :----: | :---- |
+| appPlus | Boolean | -- | false | app端，是否先把图片转换成base64，再画图，[fix：Android10 真机 uni.canvasToTempFilePath报错](https://ask.dcloud.net.cn/question/103303) |
+| pixelRatio | Number | -- | 2 | (app真机)设备分辨率 |
 
 #### 效果预览
 

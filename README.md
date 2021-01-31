@@ -2,7 +2,7 @@
 A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.
 
 #### Introduction | [简体中文](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/README-ZH.md)
-+ Multiterminal support：[uni-uniapp | wx-miniprogram | web-h5](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
++ Multiterminal support：[ web-h5 | wx-miniprogram | uni-uniapp](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
 + Canvas support：draw texts, paths and pictures to canvas
 + Canvas z-index：pictures(preload=true) < paths < pictures < texts
 
@@ -21,11 +21,11 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 + instance：new CanvasPosterSprite(setting)
 ```
 new CanvasPosterSprite({
-   /* uni|wx */
+   /* wx|uni */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* uni|wx|web */
+   /* web|wx|uni */
    width: 640,
    height: 640,
    pics: [
@@ -54,25 +54,12 @@ new CanvasPosterSprite({
 })
 ```
 #### examples
-+ uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-+ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + web：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
++ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 #### setting
-+ uni
 
-| param | type | require | default | desc |
-| :----: | :----: | :----: | :----: | :---- |
-| appPlus | Boolean | -- | false | app，whether transform pictures to base64 first，and draw to canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
-| pixelRatio | Number | -- | 2 | app pixelRatio. |
-
-+ uni | wx
-
-| param | type | require | default | desc |
-| :----: | :----: | :----: | :----: | :---- |
-| self | Object | yes | -- | content - this |
-| canvasId | String | yes | -- | canvas-id |
-
-+ uni | wx | web
++ web | wx | uni
 
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
@@ -91,6 +78,20 @@ new CanvasPosterSprite({
 | paths | Object | -- | -- | paths. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | callback (err, res) |
+
++ wx | uni
+
+| param | type | require | default | desc |
+| :----: | :----: | :----: | :----: | :---- |
+| self | Object | yes | -- | content - this |
+| canvasId | String | yes | -- | canvas-id |
+
++ uni
+
+| param | type | require | default | desc |
+| :----: | :----: | :----: | :----: | :---- |
+| appPlus | Boolean | -- | false | app，whether transform pictures to base64 first，and draw to canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
+| pixelRatio | Number | -- | 2 | app pixelRatio. |
 
 
 #### screenshot
