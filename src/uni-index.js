@@ -4,7 +4,23 @@ import { objectProtoType } from './utils/type.js'
 import DrawPath from './draw-path/base-draw-path.js'
 import DrawText from './draw-text/base-draw-text.js'
 import BaseCanvasPosterSprite from './core/base-canvas.js'
-import { drawApiMap, canvasBaseApiMap } from './canvas-api/uni-canvas-api-map.js'
+
+import { getImageInfos } from './canvas-api/uni-canvas-api.js'
+import { canvasApi, setCanvasEvnCtx } from './canvas-api/env-canvas-api.js'
+import { canvasCtxApi, setCanvasCtxApiEnv } from './canvas-api/ctx-canvas-api.js'
+
+//设置平台环境
+let platform = 'uni-app';
+setCanvasCtxApiEnv(platform);
+
+//设置原生Api
+setCanvasEvnCtx({
+  __getImageInfo__: uni.getImageInfo,                   //下载图片
+  __createCanvasContext__: uni.createCanvasContext,     //创建canvas的ctx
+  __canvasToTempFilePath__: uni.canvasToTempFilePath,   //保存本地路径
+});
+//改写 getImageInfos 方法
+canvasApi.getImageInfos = getImageInfos;
 
 class CanvasPosterSprite extends BaseCanvasPosterSprite{
 	constructor(options){
@@ -15,11 +31,12 @@ class CanvasPosterSprite extends BaseCanvasPosterSprite{
 		let opts = merge({}, setting, fnSetting, uniSetting, options);
 		super(opts);
 		this.options = opts;						 //配置
-		this.drawPath = new DrawPath(drawApiMap);	 //路径方法
-		this.drawText = new DrawText(drawApiMap);	 //文本方法
+		this.__platform__ = platform;			 	 //canvas-平台
+		this.drawPath = new DrawPath(canvasCtxApi);	 //路径方法
+		this.drawText = new DrawText(canvasCtxApi);	 //文本方法
 		this.canvasApi = {							 //画布api
-			...drawApiMap,
-			...canvasBaseApiMap			 
+			...canvasCtxApi,
+			...canvasApi			 
 		}
 		//准备就绪，合成海报
 		this.canvas();

@@ -1,16 +1,16 @@
 /*!
- * @desc canvas合成海报插件
+ * @desc A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.
  * @version 1.0.0
  * @author 小小咖 466102061@qq.com
- * @time 2021-1-31 10:33:22
+ * @time 2021-2-6 15:28:30
  *
  * @example
  * new CanvasPosterSprite({
- *    /* uni|wx * /
+ *    /* wx|uni * /
  *    self: this,
  *    canvasId: 'canvas-id',
  *
- *    /* uni|wx|web * /
+ *    /* web|wx|uni * /
  *    width: 640,
  *    height: 640,
  *    pics: [

@@ -16,7 +16,12 @@ class CanvasPosterSprite{
 		this.drawPath = {};					//路径方法
 		this.drawText = {};					//文本方法
 		this.canvasApi = {};				//画布api
+		this.thenCallbacks = [];			//then函数回调
 		// this.options.isDebug && console.log("配置：",setting);
+		return this;
+	}
+	then(callback){
+		this.thenCallbacks.push(callback);
 		return this;
 	}
 	//画图
@@ -45,6 +50,7 @@ class CanvasPosterSprite{
 		let drawPath = this.drawPath || {};
 		let drawText = this.drawText || {};
 		let canvasApi = this.canvasApi || {};
+		let thenCallbacks = this.thenCallbacks || [];
 	    //图片预加载,存放数组
 	    opts['preload'] = [];
 
@@ -164,9 +170,19 @@ class CanvasPosterSprite{
 	      	canvas,
 	      	ERROR_TYPE,
 	      	callback: (err, res)=>{
+	      		//传参-回调
 	      		opts.callback(err, {
 	      			...res,
 	      			canvas
+	      		});
+	      		//then-回调
+	      		thenCallbacks.forEach((thenCb)=>{
+	      			if(objectProtoType.isFunction(thenCb)){
+	      				thenCb(err, {
+			      			...res,
+			      			canvas
+			      		});
+	      			}
 	      		});
 	      	}
 	      });

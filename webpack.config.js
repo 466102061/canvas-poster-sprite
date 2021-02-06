@@ -46,9 +46,13 @@ module.exports = {
   mode : 'production',
   // target : ['web', 'es5'],
   entry : {
-    'wx-canvas-poster-sprite' : path.resolve(__dirname, './src/wx-index.js'),
+  	'my-canvas-poster-sprite' : path.resolve(__dirname, './src/my-index.js'),
+    'qq-canvas-poster-sprite' : path.resolve(__dirname, './src/qq-index.js'),
+    'swan-canvas-poster-sprite' : path.resolve(__dirname, './src/swan-index.js'),
+    'tt-canvas-poster-sprite' : path.resolve(__dirname, './src/tt-index.js'),
+    'uni-canvas-poster-sprite' : path.resolve(__dirname, './src/uni-index.js'),
     'web-canvas-poster-sprite' : path.resolve(__dirname, './src/web-index.js'),
-  	'uni-canvas-poster-sprite' : path.resolve(__dirname, './src/uni-index.js'),
+    'wx-canvas-poster-sprite' : path.resolve(__dirname, './src/wx-index.js'),
   },
   output: {
     path: path.resolve(__dirname, './dist'),

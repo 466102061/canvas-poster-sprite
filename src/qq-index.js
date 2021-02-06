@@ -9,14 +9,14 @@ import { canvasApi, setCanvasEvnCtx } from './canvas-api/env-canvas-api.js'
 import { canvasCtxApi, setCanvasCtxApiEnv } from './canvas-api/ctx-canvas-api.js'
 
 //设置平台环境
-let platform = 'wx-Miniprogram';
+let platform = 'qq-Miniprogram';
 setCanvasCtxApiEnv(platform);
 
 //设置原生Api
 setCanvasEvnCtx({
-  __getImageInfo__: wx.getImageInfo,                   //下载图片
-  __createCanvasContext__: wx.createCanvasContext,     //创建canvas的ctx
-  __canvasToTempFilePath__: wx.canvasToTempFilePath,   //保存本地路径
+  __getImageInfo__: qq.getImageInfo,                   //下载图片
+  __createCanvasContext__: qq.createCanvasContext,     //创建canvas的ctx
+  __canvasToTempFilePath__: qq.canvasToTempFilePath,   //保存本地路径
 });
 
 class CanvasPosterSprite extends BaseCanvasPosterSprite{

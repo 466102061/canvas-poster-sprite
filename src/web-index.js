@@ -4,7 +4,13 @@ import { objectProtoType } from './utils/type.js'
 import DrawPath from './draw-path/base-draw-path.js'
 import DrawText from './draw-text/base-draw-text.js'
 import BaseCanvasPosterSprite from './core/base-canvas.js'
-import { drawApiMap, canvasBaseApiMap } from './canvas-api/web-canvas-api-map.js'
+
+import { canvasApi } from './canvas-api/web-canvas-api.js'
+import { canvasCtxApi, setCanvasCtxApiEnv } from './canvas-api/ctx-canvas-api.js'
+
+//设置平台环境
+let platform = 'web';
+setCanvasCtxApiEnv(platform);
 
 class CanvasPosterSprite extends BaseCanvasPosterSprite{
 	constructor(options){
@@ -23,11 +29,12 @@ class CanvasPosterSprite extends BaseCanvasPosterSprite{
 
 		super(opts);
 		this.options = opts;						 //配置
-		this.drawPath = new DrawPath(drawApiMap);	 //路径方法
-		this.drawText = new DrawText(drawApiMap);	 //文本方法
+		this.__platform__ = platform;			 	 //canvas-平台
+		this.drawPath = new DrawPath(canvasCtxApi);	 //路径方法
+		this.drawText = new DrawText(canvasCtxApi);	 //文本方法
 		this.canvasApi = {							 //画布api
-			...drawApiMap,
-			...canvasBaseApiMap			 
+			...canvasCtxApi,
+			...canvasApi			 
 		}
 		//准备就绪，合成海报
 		this.canvas();

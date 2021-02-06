@@ -7,11 +7,15 @@
     "example": "examples"
   },
   "scripts": {
+    "my-build": "node build/my-build.js",
+    "qq-build": "node build/qq-build.js",
+    "swan-build": "node build/swan-build.js",
+    "tt-build": "node build/tt-build.js",
+    "uni-build": "node build/uni-build.js",
+    "web-build": "node build/web-build.js",
+    "wx-build": "node build/wx-build.js",
     "pack": "webpack --config webpack.config.js",
     "build": "node --max_semi_space_size=64 build/build.js",
-    "wx-build": "node --max_semi_space_size=64 build/wx-build.js",
-    "uni-build": "node --max_semi_space_size=64 build/uni-build.js",
-    "web-build": "node --max_semi_space_size=64 build/web-build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
