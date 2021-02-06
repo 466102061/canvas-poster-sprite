@@ -2,7 +2,7 @@
 A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.
 
 #### Introduction | [简体中文](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/README-ZH.md)
-+ Multiterminal support：[ web-h5 | wx-miniprogram | uni-uniapp](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
++ Multiterminal support：[web-h5 | uni-app | wx-miniprogram | my-miniprogram | tt-miniprogram | swan-miniprogram | qq-miniprogram](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
 + Canvas support：draw texts, paths and pictures to canvas
 + Canvas z-index：pictures(preload=true) < paths < pictures < texts
 
@@ -17,16 +17,20 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 #### Useage
 + install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite
 + web：import CanvasPosterSprite from 'canvas-poster-sprite'
-+ wx：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
 + uni：import CanvasPosterSprite from 'canvas-poster-sprite/dist/uni-canvas-poster-sprite.js'
++ wx：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
++ my：import CanvasPosterSprite from 'canvas-poster-sprite/dist/my-canvas-poster-sprite.js'
++ tt：import CanvasPosterSprite from 'canvas-poster-sprite/dist/tt-canvas-poster-sprite.js'
++ swan：import CanvasPosterSprite from 'canvas-poster-sprite/dist/swan-canvas-poster-sprite.js'
++ qq：import CanvasPosterSprite from 'canvas-poster-sprite/dist/qq-canvas-poster-sprite.js'
 + instance：new CanvasPosterSprite(setting)
 ```
 new CanvasPosterSprite({
-   /* wx|uni */
+   /* uni|wx|my|tt|swan|qq */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* web|wx|uni */
+   /* web|uni|wx|my|tt|swan|qq */
    width: 640,
    height: 640,
    pics: [
@@ -43,24 +47,27 @@ new CanvasPosterSprite({
    },
    texts: [
      {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
-   ],
-   callback: function(err, res){
-     if(err){
-       console.log("canvas-fail：", err);
-       return;
-     }
-     let { tempFilePath, canvas } = res;
-     console.log("canvas-success：", res);
-  }
+   ]
+}).then((err, res)=>{
+   if(err){
+     console.log("canvas-fail：", err);
+     return;
+   }
+   let { tempFilePath, canvas } = res;
+   console.log("canvas-success：", res);
 })
 ```
 #### examples
 + web：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
-+ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ my：[examples/components/my-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ tt：[examples/components/tt-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ swan：[examples/components/swan-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ qq：[examples/components/qq-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 #### setting
 
-+ web | wx | uni
++ web | uni | wx | my | tt | swan | qq
 
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
@@ -80,7 +87,7 @@ new CanvasPosterSprite({
 | texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | callback (err, res) |
 
-+ wx | uni
++  uni | wx | my | tt | swan | qq
 
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |

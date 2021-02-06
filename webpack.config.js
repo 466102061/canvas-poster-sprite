@@ -1,20 +1,20 @@
 const path = require('path')
 const webpack = require('webpack')
 const pkg = require('./package.json')
-const time = require("dayjs")().format("YYYY-M-D HH:mm:ss")
+const timeFormat = require("./src/utils/time.js")
 const bannerPlugin = new webpack.BannerPlugin(
 `@desc ${ pkg.description }
 @version ${ pkg.version }
 @author ${ pkg.author + ' ' + pkg.email }
-@time ${ time }
+@time ${ timeFormat("yyyy-MM-dd hh:mm:ss") }
 
 @example
 new CanvasPosterSprite({
-   /* wx|uni */
+   /* uni|wx|my|tt|swan|qq */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* web|wx|uni */
+   /* web|uni|wx|my|tt|swan|qq */
    width: 640,
    height: 640,
    pics: [

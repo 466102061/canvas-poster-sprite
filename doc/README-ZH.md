@@ -2,7 +2,7 @@
 一个canvas海报合成插件，可以绘制文本，路径和图片到画布，并导出图片数据。
 
 #### 功能简介 | [English](https://github.com/466102061/canvas-poster-sprite#readme)
-+ 多端支持：[web-h5 | wx-微信小程序 | uni-uniapp](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
++ 多端支持：[web-h5 | uni-uniapp | wx-微信小程序 | my-支付宝小程序 | tt-头条小程序 | swan-百度小程序 | qq-qq小程序](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
 + 功能支持：图片、路径(矩形、圆形、三角/多边形)、文本(单行、多行)
 + 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
 
@@ -17,16 +17,20 @@
 #### 使用说明
 + install：npm i canvas-poster-sprite  or yarn add canvas-poster-sprite
 + web导入：import CanvasPosterSprite from 'canvas-poster-sprite'
-+ wx导入：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
-+ uni导入：import CanvasPosterSprite from 'canvas-poster-sprite/dis/uni-canvas-poster-sprite.js'
++ uni：import CanvasPosterSprite from 'canvas-poster-sprite/dist/uni-canvas-poster-sprite.js'
++ wx：import CanvasPosterSprite from 'canvas-poster-sprite/dist/wx-canvas-poster-sprite.js'
++ my：import CanvasPosterSprite from 'canvas-poster-sprite/dist/my-canvas-poster-sprite.js'
++ tt：import CanvasPosterSprite from 'canvas-poster-sprite/dist/tt-canvas-poster-sprite.js'
++ swan：import CanvasPosterSprite from 'canvas-poster-sprite/dist/swan-canvas-poster-sprite.js'
++ qq：import CanvasPosterSprite from 'canvas-poster-sprite/dist/qq-canvas-poster-sprite.js'
 + 初始化实例：new CanvasPosterSprite(setting)
 ```
 new CanvasPosterSprite({
-   /* wx|uni */
+   /* uni|wx|my|tt|swan|qq */
    self: this, 
    canvasId: 'canvas-id',
 
-   /* web|wx|uni */
+   /* web|uni|wx|my|tt|swan|qq */
    width: 640,
    height: 640,
    pics: [
@@ -43,25 +47,28 @@ new CanvasPosterSprite({
    },
    texts: [
      {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
-   ],
-   callback: function(err, res){
-     if(err){
-       console.log("canvas-fail：", err);
-       return;
-     }
-     let { tempFilePath, canvas } = res;
-     console.log("canvas-success：", res);
-  }
+   ]
+}).then((err, res)=>{
+   if(err){
+     console.log("canvas-fail：", err);
+     return;
+   }
+   let { tempFilePath, canvas } = res;
+   console.log("canvas-success：", res);
 })
 ```
 
 #### 参考案例
 + web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
-+ wx端：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-+ uni端：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ my：[examples/components/my-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ tt：[examples/components/tt-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ swan：[examples/components/swan-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
++ qq：[examples/components/qq-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 #### 参数(setting)说明
 
-+ web | wx | uni
++ web | uni | wx | my | tt | swan | qq
 
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
 | :----: | :----: | :----: | :----: | :---- |
@@ -81,7 +88,7 @@ new CanvasPosterSprite({
 | texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | 回调，返回(err, res) |
 
-+ wx | uni
++  uni | wx | my | tt | swan | qq
 
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
 | :----: | :----: | :----: | :----: | :---- |

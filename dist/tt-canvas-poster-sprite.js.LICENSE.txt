@@ -2,15 +2,15 @@
  * @desc A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.
  * @version 1.0.0
  * @author 小小咖 466102061@qq.com
- * @time 2021-2-6 16:51:17
+ * @time 2021-02-06 18:06:27
  *
  * @example
  * new CanvasPosterSprite({
- *    /* wx|uni * /
+ *    /* uni|wx|my|tt|swan|qq * /
  *    self: this,
  *    canvasId: 'canvas-id',
  *
- *    /* web|wx|uni * /
+ *    /* web|uni|wx|my|tt|swan|qq * /
  *    width: 640,
  *    height: 640,
  *    pics: [
