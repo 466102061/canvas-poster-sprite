@@ -17,7 +17,19 @@ let PATHS_MAP = {
 	"polygon" : "polygon",		//多边形
 }
 
+//平台配置
+let PLATFORM = {
+	MY: 'my-Miniprogram',
+	QQ: 'qq-Miniprogram',
+	SWAN: 'swan-Miniprogram',
+	TT: 'tt-Miniprogram',
+	UNI: 'uni-app',
+	WEB: 'web',
+	WX: 'wx-Miniprogram'
+}
+
 export {
 	ERROR_TYPE,
-	PATHS_MAP
+	PATHS_MAP,
+	PLATFORM
 }

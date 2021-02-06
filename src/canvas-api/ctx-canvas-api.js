@@ -1,3 +1,4 @@
+import { PLATFORM } from '../config/config.js'
 /**
 ** @desc wx(或uni)-canvas 以函数调用(赋值)的方式
 ** @desc  web 采用直接赋值的方式
@@ -55,7 +56,7 @@ function setCanvasCtxApiEnv(platform){
 		console.error(`You have already set __setByMethod__ and cannot change it.`);
 		return;
 	}
-	__setByMethod__ = (platform !== 'web');
+	__setByMethod__ = (platform !== PLATFORM.WEB);
 	__isConfig__ = true;
 }
 

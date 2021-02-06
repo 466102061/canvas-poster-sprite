@@ -1,4 +1,5 @@
 import { merge } from './utils/helper.js'
+import { PLATFORM } from './config/config.js'
 import { setting } from './config/setting.js'
 import { objectProtoType } from './utils/type.js'
 import DrawPath from './draw-path/base-draw-path.js'
@@ -9,7 +10,7 @@ import { canvasApi } from './canvas-api/web-canvas-api.js'
 import { canvasCtxApi, setCanvasCtxApiEnv } from './canvas-api/ctx-canvas-api.js'
 
 //设置平台环境
-let platform = 'web';
+let platform = PLATFORM.WEB;
 setCanvasCtxApiEnv(platform);
 
 class CanvasPosterSprite extends BaseCanvasPosterSprite{

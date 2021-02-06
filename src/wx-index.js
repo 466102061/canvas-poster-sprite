@@ -1,4 +1,5 @@
 import { merge } from './utils/helper.js'
+import { PLATFORM } from './config/config.js'
 import { setting, fnSetting } from './config/setting.js'
 import { objectProtoType } from './utils/type.js'
 import DrawPath from './draw-path/base-draw-path.js'
@@ -9,7 +10,7 @@ import { canvasApi, setCanvasEvnCtx } from './canvas-api/env-canvas-api.js'
 import { canvasCtxApi, setCanvasCtxApiEnv } from './canvas-api/ctx-canvas-api.js'
 
 //设置平台环境
-let platform = 'wx-Miniprogram';
+let platform = PLATFORM.WX;
 setCanvasCtxApiEnv(platform);
 
 //设置原生Api

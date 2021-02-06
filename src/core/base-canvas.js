@@ -51,6 +51,7 @@ class CanvasPosterSprite{
 		let drawText = this.drawText || {};
 		let canvasApi = this.canvasApi || {};
 		let thenCallbacks = this.thenCallbacks || [];
+		let __platform__ = this.__platform__;
 	    //图片预加载,存放数组
 	    opts['preload'] = [];
 
@@ -114,6 +115,9 @@ class CanvasPosterSprite{
 	      //1.新建canvas元素
 	      if(!canvasApi['createCanvasContext']) return;
 	      let { ctx, canvas } = canvasApi['createCanvasContext'](opts);
+	      //注入平台信息
+	      ctx.__platform__ = __platform__;
+	      canvas.__platform__ = __platform__;
 
 	      //2.设置画布区域
 	      ctx.rect(0, 0, opts.width, opts.height);
