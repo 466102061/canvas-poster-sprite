@@ -5,8 +5,7 @@
  * @event bind:fail     失败回调
  * @event bind:success  成功回调
  */
-
-import CanvasPosterSprite from '../../../dist/wx-canvas-poster-sprite.js'
+import CanvasPosterSprite from '../../../dist/qq-canvas-poster-sprite.js'
 Component({
   properties : {
     //合成海报参数param

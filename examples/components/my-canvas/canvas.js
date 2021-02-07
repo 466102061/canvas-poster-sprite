@@ -1,14 +1,13 @@
-//logs.js
 /**
  * @desc 合成海报组件
- * @param  {Object|Required} param
- * @event bind:fail     失败回调
- * @event bind:success  成功回调
+ * @param  {Object|Required} this.props.param
+ * @event props.onFail     失败回调
+ * @event this.props.onSuccess  成功回调
  */
-
-import CanvasPosterSprite from '../../../dist/wx-canvas-poster-sprite.js'
+import CanvasPosterSprite from '../../../dist/qq-canvas-poster-sprite.js'
 Component({
-  properties : {
+  mixins: [],
+  props: {
     //合成海报参数param
     param : {
       type : Object,
@@ -29,26 +28,21 @@ Component({
     width : 900,//海报宽度
     height : 1280,//海报高度
   },
-  //组件方法
-  methods: {},
-  //组件生命周期
-  lifetimes : {
-    ready: function () {
-      // console.log('ready:', this.properties.param);
+  didMount() {
+      // console.log('ready:', this.props.param);
       var self = this;
       var id = Math.random().toString(16).substr(2);
       var canvasId = 'myCanvasId_'+id;
-      var param = self.properties.param;
+      var param = self.props.param;
       // var bg = param && param.pics && param.pics[0].src;
       // if (!bg) return;//没有背景图片
       self.setData({
-        isReady: true,
-        canvasId: canvasId,
+        canvasId : canvasId,
         width : param.width,
-        height : param.height
+        height : param.height,
+        isReady : true
       });
-
-
+      
       //生成海报
       new CanvasPosterSprite({
         canvasId: canvasId,//画布宽度id
@@ -67,7 +61,7 @@ Component({
               tips: '合成海报出错了!',
               err : err
             }
-            self.triggerEvent('fail', ev);
+            self.props.onFail && self.props.onFail(ev);
             return;
           }
           console.log("合成结果:", res);
@@ -75,10 +69,11 @@ Component({
             tips : '海报合成成功!',
             res : res
           }
-          self.triggerEvent('success', ev);
+          self.props.onSuccess && self.props.onSuccess(ev);
       });
       //end 合成
-     }
-  }
-})
-
+  },
+  didUpdate() {},
+  didUnmount() {},
+  methods: {},
+});

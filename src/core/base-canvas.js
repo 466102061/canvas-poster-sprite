@@ -121,7 +121,7 @@ class CanvasPosterSprite{
 
 	      //2.设置画布区域
 	      ctx.rect(0, 0, opts.width, opts.height);
-	      canvasApi['setFillStyle'] && canvasApi['setFillStyle'](ctx, opts.bgColor || "#fff");
+	      canvasApi['setFillStyle'] && canvasApi['setFillStyle'](ctx, opts.bgColor || "white");
 	      ctx.fill();
 		  
 	      // 3.绘制背景图片或者预加载图片

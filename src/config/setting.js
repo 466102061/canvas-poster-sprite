@@ -4,7 +4,7 @@ const pkg = require('../../package.json')
 let setting = {
 	width: 640,				//画布宽度
 	height: 640,			//画布高度
-	bgColor: "#fff",		//画布背景
+	bgColor: "white",		//画布背景
 	fileType: "jpeg",		//图片格式(jpeg|png|gif)
 	quality: 1,				//导出图片质量
 	version : pkg.version,	//版本号

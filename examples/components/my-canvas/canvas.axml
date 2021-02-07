@@ -1,8 +1,8 @@
 <!--画布-->
 <canvas 
-	wx:if="{{isReady}}" 
+	a:if="{{isReady}}" 
 	class='myCanvas' 
-	canvas-id='{{canvasId}}' 
+	id='{{canvasId}}' 
 	style="{{'width:'+width+'px;height:'+height+'px;'}}">
 </canvas> 
 <!--画布-->

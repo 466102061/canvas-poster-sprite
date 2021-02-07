@@ -51,9 +51,9 @@ export default {
       var self = this;
       var id = Math.random().toString(16).substr(2);
       var canvasId = 'myCanvasId_'+id;
-      var param = self.param
-      var bg = param && param.pics && param.pics[0].src;
-      if (!bg) return;//没有背景图片
+      var param = self.param;
+      // var bg = param && param.pics && param.pics[0].src;
+      // if (!bg) return;//没有背景图片
 	  self.canvasId = canvasId;
 	  self.width = param.width;
 	  self.height = param.height;
@@ -81,8 +81,8 @@ export default {
 			paths : param.paths || {},//路径
 			self: self,//当前组件实例
 			fileType: param.fileType || "jpg",
-			quality : param.quality || 1,
-			callback: function (err, res) {
+			quality : param.quality || 1
+		  }).then((err, res)=>{
 			  if (err) {
 				console.log("合成海报出错了：", err);
 				var ev = {
@@ -98,7 +98,6 @@ export default {
 				res : res
 			  }
 			  self.$emit('success', ev);
-			}
 		  });
 		  //end 合成
 	  },250);

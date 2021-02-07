@@ -114,16 +114,34 @@ class DrawPath{
 		  ctx.moveTo(x + r, y);
 		  ctx.lineTo(x + w - r, y);
 		  //右上
-		  ctx.arcTo(x + w, y, x + w, y + r, r);
+		  ctx.arc(x + w - r, y + r, r, -0.5*Math.PI, 0, false);
 		  ctx.lineTo(x + w, y + h - r);
+
 		  //右下
-		  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+		  ctx.arc(x + w - r, y + h - r, r, 0, 0.5*Math.PI, false);
 		  ctx.lineTo(x + r, y + h);
+
 		  //左下
-		  ctx.arcTo(x, y + h, x, y + h - r, r);
-		  ctx.lineTo(x, y + h - r);
+		  ctx.arc(x + r, y + h -r, r, 0.5*Math.PI, Math.PI, false);
+		  ctx.lineTo(x, y + r);
+
 		  //左上
-		  ctx.arcTo(x, y, x + r, y, r);
+		  ctx.arc(x + r, y + r, r, Math.PI, 1.5*Math.PI, false);
+
+		   // tt | my | swan 不支持 arcTo方法
+		  // ctx.moveTo(x + r, y);
+		  // ctx.lineTo(x + w - r, y);
+		  // //右上
+		  // ctx.arcTo(x + w, y, x + w, y + r, r);
+		  // ctx.lineTo(x + w, y + h - r);
+		  // //右下
+		  // ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+		  // ctx.lineTo(x + r, y + h);
+		  // //左下
+		  // ctx.arcTo(x, y + h, x, y + h - r, r);
+		  // ctx.lineTo(x, y + h - r);
+		  // //左上
+		  // ctx.arcTo(x, y, x + r, y, r);
 		} else {
 		  ctx.moveTo(x, y);
 		  ctx.lineTo(x + w, y);
