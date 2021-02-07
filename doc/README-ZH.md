@@ -105,7 +105,7 @@ new CanvasPosterSprite({
 #### 效果预览
 
 + 基础用法：二维码(底部中间)海报  
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-1.png)
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-1.png)
 + 高级用法：(商品列表)海报    
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-2.png)
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-2.png)
 

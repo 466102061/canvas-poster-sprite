@@ -105,7 +105,7 @@ new CanvasPosterSprite({
 #### screenshot
 
 + Basic usage  
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-1.png)
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-1.png)
 + Advanced Usage   
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/demo-2.png)
+![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-2.png)
 
