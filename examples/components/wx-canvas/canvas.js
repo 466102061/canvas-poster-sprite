@@ -35,11 +35,11 @@ Component({
   lifetimes : {
     ready: function () {
       // console.log('ready:', this.properties.param);
-      var self = this;
-      var id = Math.random().toString(16).substr(2);
-      var canvasId = 'myCanvasId_'+id;
-      var param = self.properties.param;
-      // var bg = param && param.pics && param.pics[0].src;
+      let self = this;
+      let id = Math.random().toString(16).substr(2);
+      let canvasId = 'myCanvasId_'+id;
+      let param = self.properties.param;
+      // let bg = param && param.pics && param.pics[0].src;
       // if (!bg) return;//没有背景图片
       self.setData({
         isReady: true,
@@ -63,7 +63,7 @@ Component({
       }).then((err, res)=>{
           if (err) {
             console.log("合成海报出错了：", err);
-            var ev = {
+            let ev = {
               tips: '合成海报出错了!',
               err : err
             }
@@ -71,7 +71,7 @@ Component({
             return;
           }
           console.log("合成结果:", res);
-          var ev = {
+          let ev = {
             tips : '海报合成成功!',
             res : res
           }

@@ -30,7 +30,7 @@ new CanvasPosterSprite({
      ],
    },
    texts: [
-     {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
+     {text: '466102061@qq.com', font: 20, color: '#333', x: 340, y: 490, w: 200, align: "center"}
    ],
    callback: function(err, res){
      if(err){

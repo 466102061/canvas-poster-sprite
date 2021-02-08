@@ -5,7 +5,12 @@
  * @event bind:fail     失败回调
  * @event bind:success  成功回调
  */
-import CanvasPosterSprite from '../../../dist/qq-canvas-poster-sprite.js'
+ /**
+  * 实例展示，无图片资源，
+  * 官方bug：tt.getImageInfo报错：文件格式不正确，
+  * 官方bug地址：http://forum.microapp.bytedance.com/mini-app/posts/5ff096287a2fc84731f771a0
+  */
+import CanvasPosterSprite from '../../../dist/tt-canvas-poster-sprite'
 Component({
   properties : {
     //合成海报参数param
@@ -31,13 +36,12 @@ Component({
   //组件方法
   methods: {},
   //组件生命周期
-  lifetimes : {
-    ready: function () {
+  ready(){
       // console.log('ready:', this.properties.param);
       let self = this;
       let id = Math.random().toString(16).substr(2);
       let canvasId = 'myCanvasId_'+id;
-      let param = self.properties.param;
+      let param = self.properties.param
       // let bg = param && param.pics && param.pics[0].src;
       // if (!bg) return;//没有背景图片
       self.setData({
@@ -47,9 +51,9 @@ Component({
         height : param.height
       });
 
-
       //生成海报
       new CanvasPosterSprite({
+        bgColor: 'rgba(0,0,0,0.2)',
         canvasId: canvasId,//画布宽度id
         width: param.width,//画布宽度
         height: param.height,//画布高度
@@ -60,24 +64,23 @@ Component({
         fileType: param.fileType || "jpg",
         quality : param.quality || 1
       }).then((err, res)=>{
-          if (err) {
-            console.log("合成海报出错了：", err);
-            let ev = {
-              tips: '合成海报出错了!',
-              err : err
-            }
-            self.triggerEvent('fail', ev);
-            return;
-          }
-          console.log("合成结果:", res);
+        if (err) {
+          console.log("合成海报出错了：", err);
           let ev = {
-            tips : '海报合成成功!',
-            res : res
+            tips: '合成海报出错了!',
+            err : err
           }
-          self.triggerEvent('success', ev);
+          self.triggerEvent('fail', ev);
+          return;
+        }
+        console.log("合成结果:", res);
+        let ev = {
+          tips : '海报合成成功!',
+          res : res
+        }
+        self.triggerEvent('success', ev);
       });
       //end 合成
-     }
   }
 })
 

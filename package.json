@@ -1,6 +1,6 @@
 {
   "name": "canvas-poster-sprite",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A poster plugin that can draw texts, paths and pictures to canvas, and export picture data.",
   "main": "dis/web-canvas-poster-sprite.js",
   "directories": {

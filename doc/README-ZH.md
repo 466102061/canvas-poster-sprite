@@ -8,7 +8,7 @@
 
 #### 注意事项
 + 文本暂不支持艺术体，艺术体可用图片代替
-+ 图片资源支持(http|https注意跨域问题)，只有web端支持本地资源(本地service，请用require导入)
++ 图片资源支持http|https(web注意跨域问题，小程序需要添加dowanload域名白名单)，只有web端支持本地资源(本地service，请用require导入)
 + 海报背景图片加上preload=true字段，以保证第一个被画上
 + 画布的宽高最好设置成海报图的宽和高，这样最终合成的图不会有多余的空白
 + 可通过字段fileType和quality，来控制导出图片质量大小，一般jpeg格式图片质量相对较低
@@ -46,7 +46,7 @@ new CanvasPosterSprite({
      ],
    },
    texts: [
-     {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
+     {text: '466102061@qq.com', font: 20, color: '#333', x: 340, y: 490, w: 200, align: "center"}
    ]
 }).then((err, res)=>{
    if(err){
@@ -59,6 +59,7 @@ new CanvasPosterSprite({
 ```
 
 #### 参考案例
++ [各端展示](https://github.com/466102061/canvas-poster-sprite/tree/main/screenshot)
 + web端：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
 + uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
@@ -77,13 +78,7 @@ new CanvasPosterSprite({
 | bgColor | String | -- | #fff | 画布背景色 |
 | fileType | String | -- | jpeg | 图片格式(jpeg、png、gif) |
 | quality | Number | -- | 1 | 导出图片质量 |
-| pics | Array | -- | -- | 图片资源 |
-| pics[i].preload | Boolean | -- | -- | 是否【优先】加载并在画布画上 |
-| pics[i].src | String | yes | -- | 图片-src |
-| pics[i].x | Number | yes | -- | 图片-x轴位置 |
-| pics[i].y | Number | yes | -- | 图片-y轴位置 |
-| pics[i].w | Number | -- | -- | 图片-宽度 |
-| pics[i].h | Number | -- | -- | 图片-高度 |
+| pics | Array | -- | -- | 图片资源，[参考doc文件夹下draw-pic.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-pic.md) |
 | paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | 回调，返回(err, res) |
@@ -101,11 +96,4 @@ new CanvasPosterSprite({
 | :----: | :----: | :----: | :----: | :---- |
 | appPlus | Boolean | -- | false | app端，是否先把图片转换成base64，再画图，[fix：Android10 真机 uni.canvasToTempFilePath报错](https://ask.dcloud.net.cn/question/103303) |
 | pixelRatio | Number | -- | 2 | (app真机)设备分辨率 |
-
-#### 效果预览
-
-+ 基础用法：二维码(底部中间)海报  
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-1.png)
-+ 高级用法：(商品列表)海报    
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-2.png)
 

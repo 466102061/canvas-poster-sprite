@@ -48,11 +48,11 @@ export default {
 		toJSON(){},
     },
     mounted() { 
-      var self = this;
-      var id = Math.random().toString(16).substr(2);
-      var canvasId = 'myCanvasId_'+id;
-      var param = self.param;
-      // var bg = param && param.pics && param.pics[0].src;
+      let self = this;
+      let id = Math.random().toString(16).substr(2);
+      let canvasId = 'myCanvasId_'+id;
+      let param = self.param;
+      // let bg = param && param.pics && param.pics[0].src;
       // if (!bg) return;//没有背景图片
 	  self.canvasId = canvasId;
 	  self.width = param.width;
@@ -85,7 +85,7 @@ export default {
 		  }).then((err, res)=>{
 			  if (err) {
 				console.log("合成海报出错了：", err);
-				var ev = {
+				let ev = {
 				  tips: '合成海报出错了!',
 				  err : err
 				}
@@ -93,7 +93,7 @@ export default {
 				return;
 			  }
 			  // console.log("合成结果:", res);
-			  var ev = {
+			  let ev = {
 				tips : '海报合成成功!',
 				res : res
 			  }

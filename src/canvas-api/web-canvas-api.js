@@ -9,8 +9,8 @@ let canvasApi = {
 
 //创建一个canvas画布,返回ctx
 canvasApi.createCanvasContext = function(opts){
-	var canvas = document.createElement("canvas");
-	var ctx = canvas.getContext("2d");
+	let canvas = document.createElement("canvas");
+	let ctx = canvas.getContext("2d");
 	canvas.width = opts.width;
 	canvas.height = opts.height;
 	return {
@@ -27,7 +27,7 @@ canvasApi.canvasToTempFilePath = function({
 	callback
 }){
 	try{
-		var tempFilePath = canvas.toDataURL(opts.fileType, opts.quality);
+		let tempFilePath = canvas.toDataURL(opts.fileType, opts.quality);
 		callback(null, { tempFilePath });
 	}catch(e){
 	    callback({
@@ -73,13 +73,13 @@ function isNetworkSrc(src){
 
 //把https/http的图像,转换成blob文件对象
 function getImageBlob (url, ERROR_TYPE, callback) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
     xhr.responseType = 'blob';
     xhr.onload = function () {
       if (this.status == 200) {
         //这里面可以直接通过URL的api将其转换，然后赋值给img.src
-        var image = new Image();
+        let image = new Image();
         image.setAttribute("crossOrigin",'Anonymous');
         image.src = URL.createObjectURL(this.response);
         image.onload = function(){
@@ -101,7 +101,7 @@ function getImageBlob (url, ERROR_TYPE, callback) {
 
 //原样返回
 function getImageSelf(src, ERROR_TYPE, callback){
-	var image = new Image();
+	let image = new Image();
     // image.setAttribute("crossOrigin",'Anonymous');
 	image.src = src;
 	image.onload = function(){

@@ -19,6 +19,7 @@ function canvasToTempFilePath({
           	apFilePath,  //http 协议临时路径。例如“http://res/xxx.image”，小程序内可正常使用。 
           } = res;
           callback(null, {
+            res : res,
           	tempFilePath: apFilePath
           });
         },

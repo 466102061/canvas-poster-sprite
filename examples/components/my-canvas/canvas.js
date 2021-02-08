@@ -4,7 +4,7 @@
  * @event props.onFail     失败回调
  * @event this.props.onSuccess  成功回调
  */
-import CanvasPosterSprite from '../../../dist/qq-canvas-poster-sprite.js'
+import CanvasPosterSprite from '../../../dist/my-canvas-poster-sprite.js'
 Component({
   mixins: [],
   props: {
@@ -30,11 +30,11 @@ Component({
   },
   didMount() {
       // console.log('ready:', this.props.param);
-      var self = this;
-      var id = Math.random().toString(16).substr(2);
-      var canvasId = 'myCanvasId_'+id;
-      var param = self.props.param;
-      // var bg = param && param.pics && param.pics[0].src;
+      let self = this;
+      let id = Math.random().toString(16).substr(2);
+      let canvasId = 'myCanvasId_'+id;
+      let param = self.props.param;
+      // let bg = param && param.pics && param.pics[0].src;
       // if (!bg) return;//没有背景图片
       self.setData({
         canvasId : canvasId,
@@ -57,7 +57,7 @@ Component({
       }).then((err, res)=>{
           if (err) {
             console.log("合成海报出错了：", err);
-            var ev = {
+            let ev = {
               tips: '合成海报出错了!',
               err : err
             }
@@ -65,7 +65,7 @@ Component({
             return;
           }
           console.log("合成结果:", res);
-          var ev = {
+          let ev = {
             tips : '海报合成成功!',
             res : res
           }

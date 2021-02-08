@@ -46,7 +46,7 @@ new CanvasPosterSprite({
      ],
    },
    texts: [
-     {text: '466102061@qq.com', font: '20px Arial', color: '#333', x: 340, y: 490, w: 200, align: "center"}
+     {text: '466102061@qq.com', font: 20, color: '#333', x: 340, y: 490, w: 200, align: "center"}
    ]
 }).then((err, res)=>{
    if(err){
@@ -58,6 +58,7 @@ new CanvasPosterSprite({
 })
 ```
 #### examples
++ [screenshot](https://github.com/466102061/canvas-poster-sprite/tree/main/screenshot)
 + web：[examples/index.html](https://github.com/466102061/canvas-poster-sprite/tree/main/examples)
 + uni：[examples/components/uni-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + wx：[examples/components/wx-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
@@ -76,13 +77,7 @@ new CanvasPosterSprite({
 | bgColor | String | -- | #fff | canvas background color. |
 | fileType | String | -- | jpeg | type of pictures. eg.jpeg、png、gif |
 | quality | Number | -- | 1 | quality of pictures. |
-| pics | Array | -- | -- | pictures |
-| pics[i].preload | Boolean | -- | -- | Whether draw first to canvas. |
-| pics[i].src | String | yes | -- | pictures src. |
-| pics[i].x | Number | yes | -- | pictures x-axis. |
-| pics[i].y | Number | yes | -- | pictures y-axis. |
-| pics[i].w | Number | -- | -- | pictures width. |
-| pics[i].h | Number | -- | -- | pictures width. |
+| pics | Array | -- | -- | pictures. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-pic.md) |
 | paths | Object | -- | -- | paths. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 | callback | Function | -- | -- | callback (err, res) |
@@ -100,12 +95,4 @@ new CanvasPosterSprite({
 | :----: | :----: | :----: | :----: | :---- |
 | appPlus | Boolean | -- | false | app，whether transform pictures to base64 first，and draw to canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
 | pixelRatio | Number | -- | 2 | app pixelRatio. |
-
-
-#### screenshot
-
-+ Basic usage  
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-1.png)
-+ Advanced Usage   
-![avatar](https://github.com/466102061/canvas-poster-sprite/blob/main/screenshot/web-canvas-2.png)
 
