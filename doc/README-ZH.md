@@ -1,4 +1,4 @@
-### canvas海报合成精灵
+### canvas-poster-sprite
 一个canvas海报合成插件，可以绘制文本，路径和图片到画布，并导出图片数据。
 
 #### 功能简介 | [English](https://github.com/466102061/canvas-poster-sprite#readme)
@@ -23,7 +23,7 @@
 + tt：import CanvasPosterSprite from 'canvas-poster-sprite/dist/tt-canvas-poster-sprite.js'
 + swan：import CanvasPosterSprite from 'canvas-poster-sprite/dist/swan-canvas-poster-sprite.js'
 + qq：import CanvasPosterSprite from 'canvas-poster-sprite/dist/qq-canvas-poster-sprite.js'
-+ 初始化实例：new CanvasPosterSprite(setting)
++ 初始化实例：new CanvasPosterSprite(options)
 ```
 new CanvasPosterSprite({
    /* uni|wx|my|tt|swan|qq */
@@ -67,8 +67,9 @@ new CanvasPosterSprite({
 + tt：[examples/components/tt-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + swan：[examples/components/swan-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + qq：[examples/components/qq-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-#### 参数(setting)说明
-
+#### Configuration
++ let spriter = new CanvasPosterSprite(options)
++ options
 + web | uni | wx | my | tt | swan | qq
 
 | 参数 | 类型 | 是否必须 | 默认值 | 字段备注 |
@@ -78,10 +79,9 @@ new CanvasPosterSprite({
 | bgColor | String | -- | #fff | 画布背景色 |
 | fileType | String | -- | jpeg | 图片格式(jpeg、png、gif) |
 | quality | Number | -- | 1 | 导出图片质量 |
-| pics | Array | -- | -- | 图片资源，[参考doc文件夹下draw-pic.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-pic.md) |
-| paths | Object | -- | -- | 路径，[参考doc文件夹下draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
-| texts | Array | -- | -- | 文本，[参考doc文件夹下draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
-| callback | Function | -- | -- | 回调，返回(err, res) |
+| pics | Array | -- | -- | 图片资源，[参考draw-pic.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-pic.md) |
+| paths | Object | -- | -- | 路径，[参考draw-path.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
+| texts | Array | -- | -- | 文本，[参考draw-text.md](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
 
 +  uni | wx | my | tt | swan | qq
 
@@ -96,4 +96,11 @@ new CanvasPosterSprite({
 | :----: | :----: | :----: | :----: | :---- |
 | appPlus | Boolean | -- | false | app端，是否先把图片转换成base64，再画图，[fix：Android10 真机 uni.canvasToTempFilePath报错](https://ask.dcloud.net.cn/question/103303) |
 | pixelRatio | Number | -- | 2 | (app真机)设备分辨率 |
+
++ spriter
+
+| 方法 | 描述 |
+| :----:| :---- |
+| spriter.then(callback) | 回调，返回(err, res) |
+
 

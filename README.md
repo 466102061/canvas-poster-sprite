@@ -66,8 +66,9 @@ new CanvasPosterSprite({
 + tt：[examples/components/tt-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + swan：[examples/components/swan-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
 + qq：[examples/components/qq-canvas](https://github.com/466102061/canvas-poster-sprite/tree/main/examples/components)
-#### setting
-
+#### Configuration
++ let spriter = new CanvasPosterSprite(options)
++ options
 + web | uni | wx | my | tt | swan | qq
 
 | param | type | require | default | desc |
@@ -80,7 +81,6 @@ new CanvasPosterSprite({
 | pics | Array | -- | -- | pictures. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-pic.md) |
 | paths | Object | -- | -- | paths. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-path.md) |
 | texts | Array | -- | -- | texts. [More](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/draw-text.md) |
-| callback | Function | -- | -- | callback (err, res) |
 
 +  uni | wx | my | tt | swan | qq
 
@@ -95,4 +95,10 @@ new CanvasPosterSprite({
 | :----: | :----: | :----: | :----: | :---- |
 | appPlus | Boolean | -- | false | app，whether transform pictures to base64 first，and draw to canvas，[fix：Android10 uni.canvasToTempFilePath Error.](https://ask.dcloud.net.cn/question/103303) |
 | pixelRatio | Number | -- | 2 | app pixelRatio. |
+
++ spriter
+
+| method | desc |
+| :----:| :---- |
+| spriter.then(callback) | callback(err, res) |
 
