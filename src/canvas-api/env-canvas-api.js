@@ -8,10 +8,10 @@ let defaultApi = {
 let canvasEnvApi = defaultApi;    //各平台原生Api
 let __isConfig__ = false;         //是否已经设置过环境对象
 
-//设置环境对象：wx|uni|
+//设置各平台对应的原生Api
 function setCanvasEvnCtx(targetApi){
   if(__isConfig__){
-    console.error(`You have already set ctx target and cannot change it.`);
+    console.error(`You have already set canvasEnvApi and cannot change it.`);
     return;
   }
   canvasEnvApi = targetApi || defaultApi;
@@ -27,7 +27,7 @@ let canvasApi = {
   // canvasToTempFilePath: ()=>{},    //导出base64
 }
 
-//创建一个canvas画布,返回ctx
+//创建一个canvas画布,返回ctx,canvas
 canvasApi.createCanvasContext = function(opts){
 	if(!canvasEnvApi.__createCanvasContext__) return;
 	let canvas = opts.self || {};
@@ -77,7 +77,7 @@ canvasApi.canvasToTempFilePath = function({
   }
 }
 
-//微信下载图片：本地、网络
+//各小程序(或uni)平台，下载网络图片的api
 canvasApi.getImageInfos = function({
   src, 
   ERROR_TYPE, 

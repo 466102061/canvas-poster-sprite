@@ -1,6 +1,6 @@
 import { PLATFORM } from '../config/config.js'
 /**
-** @desc wx(或uni)-canvas 以函数调用(赋值)的方式
+** @desc 小程序(或uni)-canvas 以函数调用(赋值)的方式
 ** @desc  web 采用直接赋值的方式
 **/
 let canvasCtxApi = {};
@@ -32,7 +32,11 @@ canvasCtxApi.setStrokeStyle = function(ctx, color){
 	}
 }
 
-//设置字体大小
+/**
+** @desc 设置字体大小
+** 小程序官方参数为Number类型
+** web可以是String类型的参数
+**/
 canvasCtxApi.setFontSize = function(ctx, font){
 	if(__setByMethod__){
 		ctx.setFontSize(font);
