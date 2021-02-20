@@ -11,3 +11,4 @@
 | pics[i].y | Number | yes | -- | 图片-y轴位置 |
 | pics[i].w | Number | -- | -- | 图片-宽度 |
 | pics[i].h | Number | -- | -- | 图片-高度 |
+| pics[i].r | Number | -- | -- | 图片-圆角 |
