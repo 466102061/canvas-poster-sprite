@@ -59,7 +59,7 @@ Component({
 
       //生成海报
       new CanvasPosterSprite({
-          bgColor:'rgba(0,0,0,0.2)',
+        bgColor:'rgba(0,0,0,0.2)',
         canvasId: canvasId,//画布宽度id
         width: param.width,//画布宽度
         height: param.height,//画布高度

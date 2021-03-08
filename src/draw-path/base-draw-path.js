@@ -63,14 +63,14 @@ class DrawPath{
 		let canvasApi = this.canvasApi || {};
 		//保存该方法之前的状态
 		ctx.save();
-		var x = rect['x'] || 0;
-		var y = rect['y'] || 0;
-		var w = rect['w'] || 0;
-		var h = rect['h'] || 0;
-		var r = rect['r'] || 0;//圆角
-		var callback = rect['callback'] || function (res) { };
-		var type = rect['type'] || "stroke";//默认空心
-		var angle = rect['angle'] || null;//旋转角度
+		let x = rect['x'] || 0;
+		let y = rect['y'] || 0;
+		let w = rect['w'] || 0;
+		let h = rect['h'] || 0;
+		let r = rect['r'] || 0;//圆角
+		let callback = rect['callback'] || function (res) { };
+		let type = rect['type'] || "stroke";//默认空心
+		let angle = rect['angle'] || null;//旋转角度
 
 		//web
 		// ctx.fillStyle = rect['color'] || "white";
@@ -84,7 +84,7 @@ class DrawPath{
 		canvasApi['setStrokeStyle'] && canvasApi['setStrokeStyle'](ctx, rect['color'] || "white");
 
 		//处理canvas画布1px问题
-		var reg = /^\d+\.\d+$/;
+		let reg = /^\d+\.\d+$/;
 		if (!reg.test(x)) {
 		  x += 0.5;
 		}
@@ -181,18 +181,22 @@ class DrawPath{
 	* @param {Number|Require} line.x2    x2坐标
 	* @param {Number|Require} line.y2    y2坐标
 	* @param {String} line.color         填充颜色：默认白色
-	* @param {String} rect.lineWidth     画笔宽度，默认1px
+	* @param {String} line.lineWidth     画笔宽度，默认1px
+	* @param {String} line.lineCap       线条的端点样式: butt-末端添加平直的边缘 | round-末端添加圆形线帽 | square-末端添加正方形线帽 , 默认butt
+	* @param {String} line.lineJoin      线条的交点样式: bevel-斜角 | round-圆角 | miter-尖角, 默认miter
+	* @param {Array} line.dash           虚线配置
+	* @param {Array} line.offset         虚线配置-偏移量-(小程序字段)
 	*/
 	line(ctx, line) {
 		let canvasApi = this.canvasApi || {};
 		ctx.save();
-		var x1 = line['x1'] || 0;
-		var y1 = line['y1'] || 0;
-		var x2 = line['x2'] || 0;
-		var y2 = line['y2'] || 0;
+		let x1 = line['x1'] || 0;
+		let y1 = line['y1'] || 0;
+		let x2 = line['x2'] || 0;
+		let y2 = line['y2'] || 0;
 
 		//处理canvas画布1px问题
-		var reg = /^\d+\.\d+$/;
+		let reg = /^\d+\.\d+$/;
 		if (!reg.test(x1)) {
 		  x1 += 0.5;
 		}
@@ -210,6 +214,14 @@ class DrawPath{
 
 		canvasApi['setLineWidth'] && canvasApi['setLineWidth'](ctx, line['lineWidth'] || 1);
 		canvasApi['setStrokeStyle'] && canvasApi['setStrokeStyle'](ctx, line['color'] || "white");
+
+		canvasApi['setLineJoin'] && canvasApi['setLineJoin'](ctx, line['lineJoin'] || 'miter');
+		canvasApi['setLineCap'] && canvasApi['setLineCap'](ctx, line['lineCap'] || 'butt');
+
+		//设置虚线
+	    if(line['dash']){
+	    	canvasApi['setLineDash'] && canvasApi['setLineDash'](ctx, line['dash'], line['offset'] || 5);
+	    }
 
 		ctx.beginPath();
 		ctx.moveTo(x1, y1);
@@ -231,8 +243,8 @@ class DrawPath{
 	polygon(ctx, polygon){
 		let canvasApi = this.canvasApi || {};
 	    ctx.save();
-		var type = polygon.type || "stroke";
-		var points = polygon.points || [];
+		let type = polygon.type || "stroke";
+		let points = polygon.points || [];
 		if(points.length == 0) return;
 	    ctx.beginPath();
 	    points.forEach((point, index)=>{

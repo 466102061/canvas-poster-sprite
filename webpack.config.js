@@ -31,15 +31,14 @@ new CanvasPosterSprite({
    },
    texts: [
      {text: '466102061@qq.com', font: 20, color: '#333', x: 340, y: 490, w: 200, align: "center"}
-   ],
-   callback: function(err, res){
-     if(err){
-       console.log("canvas-fail：", err);
-       return;
-     }
-     let { tempFilePath, canvas } = res;
-     console.log("canvas-success：", res);
+   ]
+}).then((err, res)=>{
+  if(err){
+   console.log("canvas-fail：", err);
+   return;
   }
+  let { tempFilePath, canvas } = res;
+  console.log("canvas-success：", res);
 })`
 )
 module.exports = {

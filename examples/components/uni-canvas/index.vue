@@ -80,6 +80,7 @@ export default {
 			texts: param.texts || [],//文本
 			paths : param.paths || {},//路径
 			self: self,//当前组件实例
+			bgColor: param.bgColor || "white",
 			fileType: param.fileType || "jpg",
 			quality : param.quality || 1
 		  }).then((err, res)=>{

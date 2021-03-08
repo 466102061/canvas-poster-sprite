@@ -15,6 +15,34 @@ canvasCtxApi.setLineWidth = function(ctx, lineWidth){
 		ctx.lineWidth = lineWidth;
 	}
 }
+
+//设置线条的端点样式
+canvasCtxApi.setLineCap = function(ctx, lineCap){
+	if(__setByMethod__){
+		ctx.setLineCap(lineCap);
+	}else{
+		ctx.lineCap = lineCap;
+	}
+}
+
+//设置线条的交点样式
+canvasCtxApi.setLineJoin = function(ctx, lineJoin){
+	if(__setByMethod__){
+		ctx.setLineJoin(lineJoin);
+	}else{
+		ctx.lineJoin = lineJoin;
+	}
+}
+
+//虚线配置
+canvasCtxApi.setLineDash = function(ctx, segments, offset){
+	if(__setByMethod__){
+		ctx.setLineDash(segments, offset);
+	}else{
+		ctx.setLineDash(segments);
+	}
+}
+
 //设置背景颜色-实心
 canvasCtxApi.setFillStyle = function(ctx, color){
 	if(__setByMethod__){
@@ -23,6 +51,7 @@ canvasCtxApi.setFillStyle = function(ctx, color){
 		ctx.fillStyle = color;
 	}
 }
+
 //设置背景颜色-空心
 canvasCtxApi.setStrokeStyle = function(ctx, color){
 	if(__setByMethod__){
