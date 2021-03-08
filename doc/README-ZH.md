@@ -3,7 +3,7 @@
 
 #### 功能简介 | [English](https://github.com/466102061/canvas-poster-sprite#readme)
 + 多端支持：[web-h5 | uni-uniapp | wx-微信小程序 | my-支付宝小程序 | tt-头条小程序 | swan-百度小程序 | qq-qq小程序](https://github.com/466102061/canvas-poster-sprite/tree/main/dist)
-+ 功能支持：图片、路径(矩形、圆形、三角/多边形)、文本(单行、多行)
++ 功能支持：图片、路径(矩形、圆形、三角/多边形、分割线-实线或者虚线)、文本(单行、多行)
 + 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
 
 #### 注意事项
