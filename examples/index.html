@@ -15,6 +15,7 @@
 	width: 100%;
 	max-width: 487px;
 	margin: 0 auto;
+  padding:0 15px;
 }
 .hd{
 	text-align: center;
@@ -80,159 +81,157 @@ window.onload = function(){
         paths : {
           circle : [
             {
-              color: "#fff",
+              x: 214,
+              y: 1158,
+              w: 56,
               h: 56,
               r: 28,
               type: "fill",
-              w: 56,
-              x: 214,
-              y: 1158
+              color: "#ffffff"
             }
           ],
           rect : [
             {
-              color: "#e6e6e6",
-              h: 252,
-              r: 0,
-              type: "fill",
-              w: 252,
               x: 324,
-              y: 1244
-            },
-            {
-              color: "#fff",
-              h: 250,
-              r: 0,
+              y: 1244,
+              w: 252,
+              h: 252,
               type: "fill",
-              w: 250,
-              x: 325,
-              y: 1245
+              color: "#e6e6e6"
             },
             {
-              color: "rgba(0, 0, 0, .15)",
+              x: 325,
+              y: 1245,
+              w: 250,
+              h: 250,
+              type: "fill",
+              color: "#ffffff"
+            },
+            {
+              x: 206,
+              y: 1152,
+              w: 488,
               h: 68,
               r: 34,
               type: "fill",
-              w: 488,
-              x: 206,
-              y: 1152
+              color: "rgba(0, 0, 0, .15)"
             }
           ],
           triangle : [
             {
-              type: "fill",
-              color: "rgba(0, 0, 0, .15)",
               points : [
                 {x: 450, y: 1233},
                 {x: 462, y: 1220},
                 {x: 439, y: 1220}
-              ]
+              ],
+              type: "fill",
+              color: "rgba(0, 0, 0, .15)"
             }
           ]
         },
         pics : [
           {
+            x: 0,
+            y: 0,
+            w: 900,
             h: 1600,
             preload: true,
-            src: "./img/bg-zm.jpg",
-            w: 900,
-            x: 0,
-            y: 0
+            src: "./img/bg-zm.jpg"
           },
           {
-            h: 244,
-            src: "./img/qrcode-zm.png",
-            w: 244,
             x: 328,
-            y: 1248
+            y: 1248,
+            w: 244,
+            h: 244,
+            src: "./img/qrcode-zm.png"
           },
           {
+            x: 215,
+            y: 1159,
+            w: 54,
             h: 54,
             r: 27,
-            src: "./img/icon.jpeg",
-            w: 54,
-            x: 215,
-            y: 1159
+            src: "./img/icon.jpeg"
           }
         ],
         texts: [
           {
-            align: "center",
-            color: "#000",
-            font: "28px 微软雅黑",
-            text: "联系方式：466102061@qq.com",
-            w: 250,
             x: 328,
-            y: 1538
+            y: 1538,
+            w: 250,
+            font: "28px 微软雅黑",
+            align: "center",
+            color: "#000000",
+            text: "联系方式：466102061@qq.com"
           },
           {
-            color: "#FFE506",
-            font: "26px 微软雅黑",
-            text: "小小咖侠侣店",
-            w: 156,
             x: 280,
-            y: 1187
+            y: 1187,
+            font: "26px 微软雅黑",
+            color: "#FFE506",
+            text: "小小咖侠侣店"
           },
           {
-            color: "#fff",
-            font: "26px 微软雅黑",
-            text: "邀请你注册侠侣联盟",
-            w: 234,
             x: 436,
-            y: 1187
+            y: 1187,
+            font: "26px 微软雅黑",
+            color: "#ffffff",
+            text: "邀请你注册侠侣联盟"
           }
         ],
-        callback: function(err, res){
-  	      console.log("海报合成结果：", err, res);
-  	      var oDiv = document.getElementById("J_div-1");
-  	      if(err){
-  	        // console.log("合成海报出错了：", err);
+        // 也可以是：传参回调的方式，返回结果
+        // callback:function(err, res){
+        //   console.log(err, res);
+        // }
+     }).then(function(err, res){
+          console.log("海报合成结果：", err, res);
+          var oDiv = document.getElementById("J_div-1");
+          if(err){
+            // console.log("合成海报出错了：", err);
 
-  	       	//静态html，浏览器安全考虑:
-  	       	//SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
-  	        if(res && res.canvas){
-  	        	// document.body.appendChild(res.canvas);
-  	        	oDiv.appendChild(res.canvas);
-  	        	oDiv.style.display = 'block';
-  	        }
-  	        return;
-  	      }
+            //静态html，浏览器安全考虑:
+            //SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
+            if(res && res.canvas){
+              // document.body.appendChild(res.canvas);
+              oDiv.appendChild(res.canvas);
+              oDiv.style.display = 'block';
+            }
+            return;
+          }
 
-  	      //导出base64
-  	      var img = document.createElement("img");
-  	      img.src = res.tempFilePath;
-  	      // document.body.appendChild(img);
-  	      oDiv.appendChild(img);
-  	      oDiv.style.display = 'block';
-        }
+          //导出base64
+          var img = document.createElement("img");
+          img.src = res.tempFilePath;
+          // document.body.appendChild(img);
+          oDiv.appendChild(img);
+          oDiv.style.display = 'block';
      });
-
+     
      //高级用法 - (商品列表)海报
-     var param = getHotParam(proData);
-     param.callback = function(err, res){
-      console.log("海报合成结果：", err, res);
-      var oDiv = document.getElementById("J_div-2");
-      if(err){
-        // console.log("合成海报出错了：", err);
+     var param = getCanvasParam();
+  	 new CanvasPosterSprite(param).then(function(err, res){
+        console.log("海报合成结果：", err, res);
+        var oDiv = document.getElementById("J_div-2");
+        if(err){
+          // console.log("合成海报出错了：", err);
 
-       	//静态html，浏览器安全考虑:
-       	//SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
-        if(res && res.canvas){
-        	// document.body.appendChild(res.canvas);
-        	oDiv.appendChild(res.canvas);
-        	oDiv.style.display = 'block';
+          //静态html，浏览器安全考虑:
+          //SecurityError: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
+          if(res && res.canvas){
+            // document.body.appendChild(res.canvas);
+            oDiv.appendChild(res.canvas);
+            oDiv.style.display = 'block';
+          }
+          return;
         }
-        return;
-      }
 
-      //导出base64
-      var img = document.createElement("img");
-      img.src = res.tempFilePath;
-      // document.body.appendChild(img);
-      oDiv.appendChild(img);
-      oDiv.style.display = 'block';
-    }
-	 new CanvasPosterSprite(param);	
+        //导出base64
+        var img = document.createElement("img");
+        img.src = res.tempFilePath;
+        // document.body.appendChild(img);
+        oDiv.appendChild(img);
+        oDiv.style.display = 'block';
+     });	
 }
 </script>
 </body>

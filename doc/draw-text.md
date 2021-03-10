@@ -14,7 +14,7 @@
 | text | String | yes | -- | 文本 |
 | angle | Number | -- | -- | 字体(以正中点)旋转角度 |
 | align | String | -- | left | 对齐方式：left、center、right |
-| font | Number or String | -- | 14 | 字体、大小等，小程序官方类型是Number |
+| font | Number or String | -- | 14 | 字体大小，小程序官方类型是Number，web是String，如：'14px Arial' |
 | color | String | -- | black | 字体颜色 |
 | baseline | String | -- | middle | 字体对齐方式(y轴) |
 | lineHeight | Number | -- | 20 | 行高 |
@@ -31,7 +31,7 @@
 | text | String | yes | -- | 文本 |
 | multiple | Boolean | yes | false | 【控制是否显示多行】 |
 | clamp | Number | -- | -1 | 大于0，显示clamp行,外加... |
-| font | Number or String | -- | 14 | 字体、大小等, 小程序官方类型是Number |
+| font | Number or String | -- | 14 | 字体大小, 小程序官方类型是Number，web是String，如：'14px Arial' |
 | color | String | -- | black | 字体颜色 |
 | baseline | String | -- | middle | 字体对齐方式(y轴) |
 | lineHeight | Number | -- | 24 | 行高 |

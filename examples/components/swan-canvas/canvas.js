@@ -48,8 +48,6 @@ Component({
       let id = Math.random().toString(16).substr(2);
       let canvasId = 'myCanvasId_'+id;
       let param = self.properties.param;
-      // let bg = param && param.pics && param.pics[0].src;
-      // if (!bg) return;//没有背景图片
       self.setData({
         canvasId : canvasId,
         width : param.width,

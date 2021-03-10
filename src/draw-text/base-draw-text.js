@@ -23,12 +23,13 @@ class DrawText{
 	* @param {String} text.lineHeight    文字行高
 	*/
 	textAlign(ctx, text){
+		let font = text['font'] || 14;
 		let canvasApi = this.canvasApi || {};
 		//保存画布之前环境
 		ctx.save();
 
 		//文字基本属性
-		canvasApi['setFontSize'] && canvasApi['setFontSize'](ctx, text['font'] || 14);//小程序无法设置字体
+		canvasApi['setFontSize'] && canvasApi['setFontSize'](ctx, font);//小程序无法设置字体
 		canvasApi['setFillStyle'] && canvasApi['setFillStyle'](ctx, text['color'] || "black");
 		canvasApi['setTextBaseline'] && canvasApi['setTextBaseline'](ctx, text['baseline'] || "middle");
 
@@ -50,8 +51,8 @@ class DrawText{
 		let lineHeight = text['lineHeight'] || 20;//文字行高
 		let angle = text['angle'] || null;//文字旋转角度
 		let type = text['align'] || 'left';//left || center || right
-		let str = text['text'] ? text['text'] : (text || '');
-		let d = this.measureText(ctx, text['font'], str);
+		let str = text['text'] ? (text['text']).toString() : '';
+		let d = this.measureText(ctx, str, font);
 
 		if (w > 0 && type == 'center') {
 		  x_1 = x + 0.5 * (w - d);
@@ -70,7 +71,6 @@ class DrawText{
 
 		//回复画布之前环境
 		ctx.restore();
-
 	}
 	/**
 	* @desc 文字自动换行(或要显示的行数,外加...)
@@ -88,12 +88,13 @@ class DrawText{
 	*/
 	wordwrap(ctx, text){
 		let self = this;
+		let font = text['font'] || 14;
 		let canvasApi = this.canvasApi || {};
 		//保存画布之前环境
 		ctx.save();
 
 		//文字基本属性
-		canvasApi['setFontSize'] && canvasApi['setFontSize'](ctx, text['font'] || 14);//小程序无法设置字体
+		canvasApi['setFontSize'] && canvasApi['setFontSize'](ctx, font);//小程序无法设置字体
 		canvasApi['setFillStyle'] && canvasApi['setFillStyle'](ctx, text['color'] || "black");
 		canvasApi['setTextBaseline'] && canvasApi['setTextBaseline'](ctx, text['baseline'] || "middle");
 
@@ -112,16 +113,17 @@ class DrawText{
 		let y = text['y'] || 0;
 		let w = text['w'] || 0;
 		let lineHeight = text['lineHeight'] || 24;//行高24
-		let chr = text['text'].split("") || '';
 		let n = text['clamp'] || -1;//显示n行,外加...
 		let temp = "";
 		let row = [];
-
+		
+		let chr = text['text'] || "";
+		chr = chr.toString().split("");
 		//文字换行
 		for (let a = 0; a < chr.length; a++) {
 		  //ctx.measureText(text).width  测量文本text的宽度
 		  // if (ctx.measureText(temp).width < w && ctx.measureText(temp + (chr[a])).width <= w) {
-		  if (self.measureText(ctx,text['font'],temp) < w && self.measureText(ctx,text['font'],temp + (chr[a])) <= w) {
+		  if (self.measureText(ctx, temp, font) < w && self.measureText(ctx, temp + (chr[a]), font) <= w) {
 		    temp += chr[a];
 		  } else {
 		    row.push(temp);
@@ -148,24 +150,22 @@ class DrawText{
 		}
 		//回复画布之前环境
 		ctx.restore();
-
 	}
 	/**
 	* @desc 测量文本宽度
 	* @param {Object|Require} ctx       canvas上下文ctx
-	* @param {Number} font      		  文字大小
-	* @param {String} str      		  文字
+	* @param {String} str      		    文字
+	* @param {Number} font      		文字大小
 	* @return {Number} width
 	*/
-	measureText(ctx, font, str){
-		let width = ctx.measureText(str).width;//(App端自定义组件编译模式暂时不可用)
+	measureText(ctx, str, font = 14){
+		if(!str) return 0;
 
+		let width = ctx.measureText(str).width;//(App端自定义组件编译模式暂时不可用)
 		if(width > 0) return width;
 
 		//简单修复不兼容ctx.measureText方法
-		let fontSize = parseInt(font);
-		fontSize = fontSize > 0 ? fontSize : 14;
-		width = str.length * parseInt(fontSize);
+		width = str.toString().length * parseInt(font);
 		return width;	
 	}
 }

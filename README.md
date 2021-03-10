@@ -26,28 +26,37 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 + instance：new CanvasPosterSprite(setting)
 ```
 new CanvasPosterSprite({
-   /* uni|wx|my|tt|swan|qq */
-   self: this, 
-   canvasId: 'canvas-id',
+  /* uni|wx|my|tt|swan|qq */
+  self: this, 
+  canvasId: 'canvas-id',
 
-   /* web|uni|wx|my|tt|swan|qq */
-   width: 640,
-   height: 640,
-   pics: [
-     {src: 'poster...', x: 0, y: 0, preload: true},
-     {src: 'qrcode...', x: 340, y: 500, w: 100, h: 100},
-   ],
-   paths: {
-     rect: [
-        {x: 340, y: 500, w: 200, h: 200, r: 10, color: "#000"}
-     ],
-     circle: [
-        {x: 200, y: 200, r: 50, color: "#000", type: "fill"}
-     ],
-   },
-   texts: [
-     {text: '466102061@qq.com', font: 20, color: '#333', x: 340, y: 490, w: 200, align: "center"}
-   ]
+  /* web|uni|wx|my|tt|swan|qq */
+  width: 900,
+  height: 1600,
+  bgColor: 'rgba(0,0,0,0.2)',
+  paths : {
+    circle : [
+      {x: 214, y: 1158, w: 56, h: 56, r: 28, type: "fill", color: "#ffffff"}
+    ],
+    rect : [
+      {x: 324, y: 1244, w: 252, h: 252, type: "fill", color: "#e6e6e6"},
+      {x: 325, y: 1245, w: 250, h: 250, type: "fill", color: "#ffffff"},
+      {x: 206, y: 1152, w: 488, h: 68, r: 34, type: "fill", color: "rgba(0, 0, 0, .15)"}
+    ],
+    triangle : [
+      {points : [{x: 450, y: 1233}, {x: 462, y: 1220}, {x: 439, y: 1220}], type: "fill", color: "rgba(0, 0, 0, .15)"}
+    ]
+  },
+  /*pics : [
+    {x: 0, y: 0, w: 900, h: 1600, preload: true, src: "./img/bg-zm.jpg"},
+    {x: 328, y: 1248, w: 244, h: 244, src: "./img/qrcode-zm.png"},
+    {x: 215, y: 1159, w: 54, h: 54, r: 27, src: "./img/icon.jpeg"}
+  ],*/
+  texts: [
+    {x: 328, y: 1538, w: 250, font: "28px 微软雅黑", align: "center", color: "#000000", text: "联系方式：466102061@qq.com"},
+    {x: 280, y: 1187, font: "26px 微软雅黑", color: "#FFE506", text: "小小咖侠侣店"},
+    {x: 436, y: 1187, font: "26px 微软雅黑", color: "#ffffff", text: "邀请你注册侠侣联盟"}
+  ]
 }).then((err, res)=>{
    if(err){
      console.log("canvas-fail：", err);

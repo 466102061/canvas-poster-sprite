@@ -16,12 +16,29 @@ class CanvasPosterSprite{
 		this.drawPath = {};					//路径方法
 		this.drawText = {};					//文本方法
 		this.canvasApi = {};				//画布api
-		this.thenCallbacks = [];			//then函数回调
+		this.resCallbacks = [];			    //结果回调
+		this.canvasResult = {
+			isEmit : false,					//是否已经执行回调
+			err : null,						//canvas-异常
+			res : null,						//canvas-结果
+		}	
 		// this.options.isDebug && console.log("配置：",setting);
+		//是否有回调callback参数
+		if(objectProtoType.isFunction(this.options.callback)){
+			this.resCallbacks.push(this.options.callback);
+		}
 		return this;
 	}
 	then(callback){
-		this.thenCallbacks.push(callback);
+		if(objectProtoType.isFunction(callback)){
+			this.resCallbacks.push(callback);
+
+			//then调用之前，已经有输出，直接回调给外部
+			//应用情形：web没有图片资源的情况下，canvasToTempFilePath优先then函数执行
+			if(this.canvasResult.isEmit){
+				callback(this.canvasResult.err, this.canvasResult.res);
+			}
+		}
 		return this;
 	}
 	//画图
@@ -50,13 +67,29 @@ class CanvasPosterSprite{
 		let drawPath = this.drawPath || {};
 		let drawText = this.drawText || {};
 		let canvasApi = this.canvasApi || {};
-		let thenCallbacks = this.thenCallbacks || [];
 		let __platform__ = this.__platform__;
 	    //图片预加载,存放数组
 	    opts['preload'] = [];
 
 	    //任务
 	    let tasks = {};
+
+	    //回调处理
+	    let self = this;
+		let resCallbacks = this.resCallbacks || [];
+		function emitResCallbacks(err, res){
+      		resCallbacks.forEach((callback)=>{
+      			if(objectProtoType.isFunction(callback)){
+      				callback(err, res);
+      			}
+      		});
+      		//记录当前的返回结果(包括异常)
+      		self.canvasResult = {
+      			err,
+      			res,
+      			isEmit : true
+      		}
+		}
 
 	    //图片资源(海报背景、logo、二维码等)
 	    if (objectProtoType.isArray(opts.pics)) {
@@ -70,7 +103,7 @@ class CanvasPosterSprite{
 	    				src : pic.src, 
 	    				callback : (err, info)=>{
 		    			  if(err){
-		    			  	opts.callback(err, null);
+		    			  	emitResCallbacks(err, null);
 		    			  	return;
 		    			  }
 						  let preload = pic['preload'] || false;//是否是背景图片
@@ -102,7 +135,7 @@ class CanvasPosterSprite{
 	      let result = {};
 	      //异常直接返回
 	      if (err) {
-	        opts.callback({
+	        emitResCallbacks({
 	          code: ERROR_TYPE.TASK.CODE,
 	          msg: ERROR_TYPE.TASK.MSG,
 	          err: JSON.stringify(err),
@@ -174,19 +207,10 @@ class CanvasPosterSprite{
 	      	canvas,
 	      	ERROR_TYPE,
 	      	callback: (err, res)=>{
-	      		//传参-回调
-	      		opts.callback(err, {
+	      		//回调
+	      		emitResCallbacks(err, {
 	      			...res,
 	      			canvas
-	      		});
-	      		//then-回调
-	      		thenCallbacks.forEach((thenCb)=>{
-	      			if(objectProtoType.isFunction(thenCb)){
-	      				thenCb(err, {
-			      			...res,
-			      			canvas
-			      		});
-	      			}
 	      		});
 	      	}
 	      });

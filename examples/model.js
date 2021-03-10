@@ -51,7 +51,7 @@ var proData = {
 * @param {Array} param.list 产品列表
 * @param {Function} callback
 */
-function getHotParam(param, callback) {
+function getHotTempParam(param, callback) {
 	var texts = [];//文本
 	var pics = [];//图片
 	var paths = {};//路径
@@ -85,10 +85,10 @@ function getHotParam(param, callback) {
 			y : top+25,
 			w : textWidth,
 			clamp : 3,
-			font : '34px 冬青黑体简体中文',
-			color : '#000',
 			multiple : true,
 			lineHeight : 44,
+			color : '#000000',
+			font : '34px 冬青黑体简体中文',
 			text : list[i].document_content || list[i].title
 		}
 		//价格
@@ -250,4 +250,8 @@ function getHotParam(param, callback) {
 	callback && callback(res);
 	// console.log(res);
 	return res;
+}
+
+function getCanvasParam(){
+	return getHotTempParam(proData);
 }
