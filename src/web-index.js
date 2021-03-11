@@ -41,42 +41,6 @@ class CanvasPosterSprite extends BaseCanvasPosterSprite{
 		this.canvas();
 		return this;
 	}
-	//画图
-	drawImg(ctx, target){
-		let drawPath = this.drawPath || {};
-		let w = target.img.width;
-		let h = target.img.height;
-		
-		//放缩
-		let scale_x = 1;
-		let scale_y = 1;
-		if(target['w']){
-			scale_x = target['w'] / target.img.width;
-		}
-		if(target['h']){
-			scale_y = target['h'] / target.img.height;
-		}
-		let x = target.x/scale_x;
-		let y = target.y/scale_y;
-		if(target['r'] || target['angle']){//添加圆倒角 || 旋转
-			drawPath.rect && drawPath.rect(ctx, {
-				x : target['x'],
-				y : target['y'],
-				w : target['w'],
-				h : target['h'],
-				r : target['r'],
-				angle : target['angle'],
-				callback : function(res){
-					ctx.drawImage(target.img, res.x, res.y, res.w, res.h);
-				}
-			});
-		} else {
-			ctx.scale(scale_x, scale_y);
-			ctx.drawImage(target.img, x, y, w, h);
-			//还原画布大小
-			ctx.scale(1/scale_x, 1/scale_y);
-		}
-	}
 }
 
 export default CanvasPosterSprite;

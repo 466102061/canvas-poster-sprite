@@ -17,7 +17,7 @@ new CanvasPosterSprite({
   /* web|uni|wx|my|tt|swan|qq */
   width: 900,
   height: 1600,
-  bgColor: 'rgba(0,0,0,0.2)',
+  bgColor: '#dddddd',
   paths : {
     circle : [
       {x: 214, y: 1158, w: 56, h: 56, r: 28, type: "fill", color: "#ffffff"}
