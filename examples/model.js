@@ -4,7 +4,7 @@ var posWidth = 800;//海报宽度
 var qrSize = 200;//二维码大小
 var proSize = 220;//产品大小
 var proData = {
-	qrcodeUrl : './img/qrcode-zm.png',
+	qrcodeUrl : './img/qrcode.png',
 	iconUrl : './img/icon.jpeg',
 	storeName : '联系方式：466102061@qq.com',
 	list : [
@@ -207,28 +207,26 @@ function getHotTempParam(param, callback) {
 	//qrcode
 	var qrTop = bTop;
 	var qrLeft = 550;
-	var qrcode = {
-		x : qrLeft,
-		y : qrTop,
-		w : 0.8*qrSize,
-		h : 0.8*qrSize,
-		src : qrcodeUrl
-	}
-	var logo = {
-		x : qrLeft+60,
-		y : qrTop + 60,
-		src : logoUrl,
-		w : 40,
-		h : 40
-	}
 	pics.push(bPic);
 	//是否有二维码
 	if(qrcodeUrl){
-		pics.push(qrcode);
+		pics.push({
+			x : qrLeft - 10,
+			y : qrTop - 12,
+			w : 0.9*qrSize,
+			h : 0.9*qrSize,
+			src : qrcodeUrl
+		});
 	}
 	//是否有微信头像
 	if(logoUrl){
-		pics.push(logo);
+		pics.push({
+			x : qrLeft+65,
+			y : qrTop + 65,
+			src : logoUrl,
+			w : 30,
+			h : 30
+		});
 	}
 	var store = {
 		x : 96,
