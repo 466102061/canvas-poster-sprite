@@ -9,6 +9,6 @@
 | pics[i].src | String | yes | -- | 图片-src |
 | pics[i].x | Number | yes | -- | 图片-x轴位置 |
 | pics[i].y | Number | yes | -- | 图片-y轴位置 |
-| pics[i].w | Number | -- | -- | 图片-宽度 |
-| pics[i].h | Number | -- | -- | 图片-高度 |
+| pics[i].w | Number | -- | -- | 图片-宽度，默认图片自身宽度 |
+| pics[i].h | Number | -- | -- | 图片-高度，默认图片自身高度 |
 | pics[i].r | Number | -- | -- | 图片-圆角 |

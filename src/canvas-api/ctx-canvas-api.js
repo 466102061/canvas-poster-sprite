@@ -86,7 +86,7 @@ canvasCtxApi.setTextBaseline = function(ctx, baseline){
 //设置环境
 function setCanvasCtxApiEnv(platform){
 	if(__isConfig__){
-		console.error(`You have already set __setByMethod__ and cannot change it.`);
+		console.error(`You have already set canvasCtxApiEnv and cannot change it.`);
 		return;
 	}
 	__setByMethod__ = (platform !== PLATFORM.WEB);
