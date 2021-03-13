@@ -70,7 +70,7 @@ function plusDownLoader(src, ERROR_TYPE, callback){
 				callback(null, { path : base64 });
 			  })
 			  .catch(error => {
-				opts.callback({
+				callback({
 				  desc : "转base64图片出错.",
 				  err: JSON.stringify(error),
 		          code: ERROR_TYPE.TOBASE64.CODE,
@@ -79,7 +79,7 @@ function plusDownLoader(src, ERROR_TYPE, callback){
 				}, null);
 			  })
 		}else{
-			opts.callback({
+			callback({
 			  desc : "下载失败.",
 			  err: JSON.stringify(res),
               code: ERROR_TYPE.GETIMG.CODE,

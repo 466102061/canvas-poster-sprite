@@ -30,11 +30,10 @@ let canvasApi = {
 //创建一个canvas画布,返回ctx,canvas
 canvasApi.createCanvasContext = function(opts){
 	if(!canvasEnvApi.__createCanvasContext__) return;
-	let canvas = opts.self || {};
 	let ctx = canvasEnvApi.__createCanvasContext__(opts.canvasId, opts.self);
 	return {
 		ctx,
-		canvas
+		canvas : ctx
 	}
 }
 
@@ -47,25 +46,29 @@ canvasApi.canvasToTempFilePath = function({
 }){
  if(!canvasEnvApi.__canvasToTempFilePath__) return;
  try {
-    ctx.draw(true, function () {
-      canvasEnvApi.__canvasToTempFilePath__({
-        fileType : opts.fileType || "jpg",
-        quality : opts.quality || 1,
-        canvasId: opts.canvasId,
-        success: function (res) {
-          callback(null, res);
-        },
-        fail: function (err) {
-          callback({
-          	desc : "海报保存失败.",
-            err: JSON.stringify(err),
-            code: ERROR_TYPE.SAVE.CODE,
-            msg: ERROR_TYPE.SAVE.MSG,
-            src: ""
-          }, null);
-        }
-      }, opts.self);
-    });
+    //setTimeout:修复uni,没有图片资源，ctx.draw不进入回调的bug
+    //bug描述：https://ask.dcloud.net.cn/question/115206
+    setTimeout(()=>{
+      ctx.draw(true, function () {
+        canvasEnvApi.__canvasToTempFilePath__({
+          fileType : opts.fileType || "jpg",
+          quality : opts.quality || 1,
+          canvasId: opts.canvasId,
+          success: function (res) {
+            callback(null, res);
+          },
+          fail: function (err) {
+            callback({
+              desc : "海报保存失败.",
+              err: JSON.stringify(err),
+              code: ERROR_TYPE.SAVE.CODE,
+              msg: ERROR_TYPE.SAVE.MSG,
+              src: ""
+            }, null);
+          }
+        }, opts.self);
+      });
+    }, 250);
   } catch (e) {
     callback({
     	  desc : "canva海报绘制失败.",
