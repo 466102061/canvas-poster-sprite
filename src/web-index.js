@@ -2,8 +2,6 @@ import { merge } from './utils/helper.js'
 import { PLATFORM } from './config/config.js'
 import { setting } from './config/setting.js'
 import { objectProtoType } from './utils/type.js'
-import DrawPath from './draw-path/base-draw-path.js'
-import DrawText from './draw-text/base-draw-text.js'
 import BaseCanvasPosterSprite from './core/base-canvas.js'
 
 import { canvasApi } from './canvas-api/web-canvas-api.js'
@@ -27,16 +25,13 @@ class CanvasPosterSprite extends BaseCanvasPosterSprite{
 			fileType = "image/"+fileType;
 		}
 		opts.fileType = fileType;
-
-		super(opts);
-		this.options = opts;						 //配置
-		this.__platform__ = platform;			 	 //canvas-平台
-		this.drawPath = new DrawPath(canvasCtxApi);	 //路径方法
-		this.drawText = new DrawText(canvasCtxApi);	 //文本方法
-		this.canvasApi = {							 //画布api
-			...canvasCtxApi,
-			...canvasApi			 
-		}
+		super(opts, {
+			platform,
+			canvasApi,
+			canvasCtxApi
+		});
+		this.options = opts;	
+		
 		//准备就绪，合成海报
 		this.canvas();
 		return this;

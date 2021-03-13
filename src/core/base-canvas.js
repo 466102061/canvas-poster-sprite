@@ -2,43 +2,53 @@ import { ERROR_TYPE, PATHS_MAP } from '../config/config.js'
 import { merge, mathRandomHash } from '../utils/helper.js'
 import { objectProtoType } from '../utils/type.js'
 import { parallelTasks } from '../utils/parallel.js'
+import DrawPath from '../draw-path/base-draw-path.js'
+import DrawText from '../draw-text/base-draw-text.js'
 
 /**
 ** @desc canvas合成海报 - 基类
 **/
 class CanvasPosterSprite{
-	constructor(setting){
+	constructor(setting, {
+		platform,
+		canvasApi,
+		canvasCtxApi
+	}){
 		if(!objectProtoType.isObject(setting)){
 	      console.error("参数错误，参数必须是对象！");
 	      return;
 		}
 		this.options = setting || {};		//配置
-		this.drawPath = {};					//路径方法
-		this.drawText = {};					//文本方法
-		this.canvasApi = {};				//画布api
-		this.resCallbacks = [];			    //结果回调
+		this.__platform__ = platform;		//当前运行平台
+		this.drawPath = new DrawPath(canvasCtxApi);	 //路径方法
+		this.drawText = new DrawText(canvasCtxApi);	 //文本方法
+		this.canvasApi = {					//画布api
+			...canvasApi,
+			...canvasCtxApi
+		};				
 		this.canvasResult = {
 			hasEmit : false,				//是否已经执行回调
 			err : null,						//canvas-异常
 			res : null,						//canvas-结果
 		}	
-		this.__platform__ = "";				//当前运行平台
 		this.context = {
 			ctx : null,						//当前canvas实例的ctx对象
 			canvas : null,					//当前canvas实例对象
 		}
+		this.resCallbacks = [];			    //结果回调
 		//是否有回调callback参数
 		if(objectProtoType.isFunction(this.options.callback)){
 			this.resCallbacks.push(this.options.callback);
 		}
 		return this;
 	}
+	//then回调
 	then(callback){
 		if(objectProtoType.isFunction(callback)){
 			this.resCallbacks.push(callback);
 
 			//then调用之前，已经有输出，直接回调给外部
-			//应用情形：web没有图片资源的情况下，canvasToTempFilePath优先then函数执行
+			//应用情形：web没有图片资源的情况下，exeCanvasTask优先then函数执行
 			if(this.canvasResult.hasEmit){
 				callback(this.canvasResult.err, this.canvasResult.res);
 			}
@@ -48,12 +58,14 @@ class CanvasPosterSprite{
 	//画图
 	drawImg(ctx, target){
 		let drawPath = this.drawPath || {};
+		let w = target.w || target.img.width;
+		let h = target.h || target.img.height;
 	    if (target['r'] || target['angle']) {//添加圆倒角 || 旋转
 	      drawPath.rect && drawPath.rect(ctx, {
 	        x: target['x'],
 	        y: target['y'],
-	        w: target['w'],
-	        h: target['h'],
+	        w: w,
+	        h: h,
 	        r: target['r'],
 	        angle: target['angle'],
 	        callback: function (res) {
@@ -61,7 +73,7 @@ class CanvasPosterSprite{
 	        }
 	      });
 	    } else {
-	      ctx.drawImage(target.img, target.x, target.y, target.w, target.h);
+	      ctx.drawImage(target.img, target.x, target.y, w, h);
 	    }
 	}
 	//合成海报
@@ -87,9 +99,9 @@ class CanvasPosterSprite{
 	    }
 
 	    //执行下载图片资源任务
-	    let {pics, picTasks, preloadPics} = packPicTasks();
+	    let picTasks = packPicTasks();
 	    parallelTasks(picTasks, function (err, res) {
-	        //console.log('所有已下载的图片资源：', res);
+	        // console.log('已下载的图片资源：', res);
 	        //下载异常直接返回
 	        if (err) {
 	          emitResCallbacks({
@@ -100,6 +112,25 @@ class CanvasPosterSprite{
 	          }, null);
 	          return;
 	        }
+
+	        //区分是预加载图片， 还是普通图片
+	        //for in 对key值默认有升序排序(兼容性?)
+	        let pics = [],preloadPics = [];
+	        for(let key in res){
+	        	if(res[key].preload){
+	        		preloadPics.push(res[key]);
+	        	}else{
+	        		pics.push(res[key]);
+	        	}
+	        }
+
+	        //兼容处理：手动-数组-升序(即数组头部的图片优先canvas)
+	        pics.length > 0 && pics.sort((a, b)=>{
+	        	return a.zIndex - b.zIndex;
+	        });
+	        preloadPics.length > 0 && preloadPics.sort((a, b)=>{
+	        	return a.zIndex - b.zIndex;
+	        });
 
 	        //执行绘制任务
 	    	exeCanvasTask({
@@ -148,7 +179,6 @@ class CanvasPosterSprite{
 		  
 		  // 3.绘制背景图片或者预加载图片
 		  if (objectProtoType.isArray(preloadPics) && preloadPics.length > 0) {
-		    // console.log("预加载：",preloadPics);
 		    for (let key in preloadPics) {
 		      drawImg && drawImg(ctx, preloadPics[key]);
 		    }
@@ -204,8 +234,6 @@ class CanvasPosterSprite{
 
 	    //封装：图片下载任务
 	    function packPicTasks(){
-		    let pics = [];				//一般图片资源
-		    let	preloadPics = [];		//预加载图片资源
 	    	let picTasks = {};			//图片资源下载任务
 	    	opts.pics.forEach((pic, index)=>{
 	    		let key = mathRandomHash();
@@ -219,36 +247,24 @@ class CanvasPosterSprite{
 		    			  	emitResCallbacks(err, null);
 		    			  	return;
 		    			  }
-						  let preload = pic['preload'] || false;//是否是预加载图片
-						  let res = {
+						  cb(null, {
 						    img: info.path,
 						    x: pic.x,
 						    y: pic.y,
 						    w: pic['w'],
 						    h: pic['h'],
 						    r: pic['r'],
-						    preload: preload,
+						    zIndex : index,						//图片在数组的层级
+						    preload: pic['preload'] || false,   //是否是预加载图片
 						    angle: pic['angle']
-						  }
-						  if (preload) {
-						    preloadPics.push(res);
-						  }else{
-						  	pics.push(res);
-						  }
-						  cb(null, res);
+						  });
 						}
 	    			})
 	    		}
 	    	});
-	    	//console.log('picTasks', picTasks);
-	    	return {
-	    		pics,
-	    		picTasks,
-	    		preloadPics
-	    	}
+	    	// console.log('picTasks', picTasks);
+	    	return picTasks;
 	    }
-
-	    //end-canvas
 	}
 }
 export default CanvasPosterSprite;

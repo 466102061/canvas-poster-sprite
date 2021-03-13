@@ -14,8 +14,8 @@ let setting = {
 	callback: function (err, res) {},
 }
 
-//uni-app(wx-微信小程序)等特有参数
-let fnSetting = {
+//小程序或者uni额外参数
+let mpSetting = {
 	self : '',				//当前运行环境 - this
 	canvasId : '',			//(组件)canvas-id
 }
@@ -28,6 +28,6 @@ let uniSetting = {
 
 export {
 	setting,
-	fnSetting,
+	mpSetting,
 	uniSetting
 }

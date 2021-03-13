@@ -9,7 +9,7 @@ let canvasEnvApi = defaultApi;    //各平台原生Api
 let __isConfig__ = false;         //是否已经设置过环境对象
 
 //设置各平台对应的原生Api
-function setCanvasEvnCtx(targetApi){
+function setCanvasEvnApi(targetApi){
   if(__isConfig__){
     console.error(`You have already set canvasEnvApi and cannot change it.`);
     return;
@@ -104,5 +104,5 @@ canvasApi.getImageInfos = function({
 
 export{
 	canvasApi,
-	setCanvasEvnCtx
+	setCanvasEvnApi
 }
