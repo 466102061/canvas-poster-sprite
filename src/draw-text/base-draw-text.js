@@ -1,3 +1,4 @@
+import { fontFormat } from '../utils/env.js'
 /**
 ** @desc canvas 文本方法处理 - 基类
 **/
@@ -23,7 +24,7 @@ class DrawText{
 	* @param {String} text.lineHeight    文字行高
 	*/
 	textAlign(ctx, text){
-		let font = text['font'] || 14;
+		let font = fontFormat(ctx, text['font']);
 		let canvasApi = this.canvasApi || {};
 		//保存画布之前环境
 		ctx.save();
@@ -88,7 +89,7 @@ class DrawText{
 	*/
 	wordwrap(ctx, text){
 		let self = this;
-		let font = text['font'] || 14;
+		let font = fontFormat(ctx, text['font']);
 		let canvasApi = this.canvasApi || {};
 		//保存画布之前环境
 		ctx.save();
@@ -161,11 +162,16 @@ class DrawText{
 	measureText(ctx, str, font = 14){
 		if(!str) return 0;
 
-		let width = ctx.measureText(str).width;//(App端自定义组件编译模式暂时不可用)
-		if(width > 0) return width;
+		if(ctx.measureText){
+			let width = ctx.measureText(str).width;//(App端自定义组件编译模式暂时不可用)
+			if(width > 0) return width;
+		}
 
 		//简单修复不兼容ctx.measureText方法
-		width = str.toString().length * parseInt(font);
+		let numReg = /(\d+\.?\d*)/g; //字符串中，取出数字
+		let nums = (font.toString()).match(numReg);
+		let fontSize = nums ? (nums[0] ? Number(nums[0]) : 14) : 14;
+		width = str.toString().length * fontSize;
 		return width;	
 	}
 }

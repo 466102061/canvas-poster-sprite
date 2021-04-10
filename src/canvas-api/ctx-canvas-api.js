@@ -1,4 +1,4 @@
-import { PLATFORM } from '../config/config.js'
+import { isWebEnv, fontFormat } from '../utils/env.js'
 /**
 ** @desc 小程序(或uni)-canvas 以函数调用(赋值)的方式
 ** @desc  web 采用直接赋值的方式
@@ -67,10 +67,11 @@ canvasCtxApi.setStrokeStyle = function(ctx, color){
 ** web可以是String类型的参数
 **/
 canvasCtxApi.setFontSize = function(ctx, font){
+	let fontSize = fontFormat(ctx, font);
 	if(__setByMethod__){
-		ctx.setFontSize(font);
+		ctx.setFontSize(fontSize);
 	}else{
-		ctx.font = font;
+		ctx.font = fontSize;
 	}
 }
 
@@ -89,7 +90,7 @@ function setCanvasCtxApiEnv(platform){
 		console.error(`You have already set canvasCtxApiEnv and cannot change it.`);
 		return;
 	}
-	__setByMethod__ = (platform !== PLATFORM.WEB);
+	__setByMethod__ = !isWebEnv(platform);
 	__isConfig__ = true;
 }
 

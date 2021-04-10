@@ -36,26 +36,32 @@ new CanvasPosterSprite({
   bgColor: '#dddddd',
   paths : {
     circle : [
-      {x: 214, y: 1158, w: 56, h: 56, r: 28, type: "fill", color: "#ffffff"}
+      {x: 214, y: 1123, w: 56, h: 56, r: 28, type: "fill", color: "#ffffff"}
     ],
     rect : [
-      {x: 324, y: 1244, w: 252, h: 252, type: "fill", color: "#e6e6e6"},
-      {x: 325, y: 1245, w: 250, h: 250, type: "fill", color: "#ffffff"},
-      {x: 206, y: 1152, w: 488, h: 68, r: 34, type: "fill", color: "rgba(0, 0, 0, .15)"}
+      {x: 324, y: 1209, w: 252, h: 252, type: "fill", color: "#e6e6e6"},
+      {x: 325, y: 1210, w: 250, h: 250, type: "fill", color: "#ffffff"},
+      {x: 206, y: 1117, w: 488, h: 68, r: 34, type: "fill", color: "rgba(0, 0, 0, .15)"},
+      {x: 376.5, y: 1520.5, w: 152, h: 44, r: 22, lineWidth: 4, color: "#000000"}
     ],
     triangle : [
-      {points : [{x: 450, y: 1233}, {x: 462, y: 1220}, {x: 439, y: 1220}], type: "fill", color: "rgba(0, 0, 0, .15)"}
+      {points : [{x: 450, y: 1198}, {x: 462, y: 1185}, {x: 439, y: 1185}], type: "fill", color: "rgba(0, 0, 0, .15)"}
+    ],
+    line : [
+      {x1: 360, y1: 1490.5, x2: 400, y2: 1490.5, lineWidth: 2, color: "#000000"},
+      {x1: 505, y1: 1490.5, x2: 545, y2: 1490.5, lineWidth: 2, color: "#000000"}
     ]
   },
   /*pics : [
     {x: 0, y: 0, w: 900, h: 1600, preload: true, src: "./img/bg-zm.jpg"},
-    {x: 328, y: 1248, w: 244, h: 244, src: "./img/qrcode-zm.png"},
-    {x: 215, y: 1159, w: 54, h: 54, r: 27, src: "./img/icon.jpeg"}
+    {x: 328, y: 1213, w: 244, h: 244, src: "./img/qrcode-zm.png"},
+    {x: 215, y: 1124, w: 54, h: 54, r: 27, src: "./img/icon.jpeg"}
   ],*/
   texts: [
-    {x: 328, y: 1538, w: 250, font: "28px 微软雅黑", align: "center", color: "#000000", text: "联系方式：466102061@qq.com"},
-    {x: 280, y: 1187, font: "26px 微软雅黑", color: "#FFE506", text: "小小咖侠侣店"},
-    {x: 436, y: 1187, font: "26px 微软雅黑", color: "#ffffff", text: "邀请你注册侠侣联盟"}
+    {x: 280, y: 1152, font: "26px 微软雅黑", color: "#FFE506", text: "小小咖侠侣店"},
+    {x: 436, y: 1152, font: "26px 微软雅黑", color: "#ffffff", text: "邀请你注册侠侣联盟"},
+    {x: 328, y: 1493, w: 250, font: "24px 微软雅黑", align: "center", color: "#000000", text: "邀 请 码"},
+    {x: 328, y: 1543, w: 250, font: "28px Arail", align: "center", color: "#000000", text: "3ZGVTV"}
   ]
 }).then((err, res)=>{
    if(err){
