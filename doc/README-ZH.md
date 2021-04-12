@@ -6,7 +6,7 @@
 + 功能支持：图片、路径(矩形、圆形、三角/多边形、分割线-实线或者虚线)、文本(单行、多行)
 + 画布层级：优先级高的图(preload=true) < 路径 < 图片 < 文本
 
-#### 注意事项
+#### 注意事项 | [版本更新](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/update.md)
 + 文本暂不支持艺术体，艺术体可用图片代替
 + 图片资源支持http|https(web注意跨域问题，小程序需要添加dowanload域名白名单)，只有web端支持本地资源(本地service，请用require导入)
 + 海报背景图片加上preload=true字段，以保证第一个被画上

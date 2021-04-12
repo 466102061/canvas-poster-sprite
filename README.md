@@ -6,7 +6,7 @@ A poster plugin that can draw texts, paths and pictures to canvas, and export pi
 + Canvas support：draw texts, paths and pictures to canvas
 + Canvas z-index：pictures(preload=true) < paths < pictures < texts
 
-#### Notes
+#### Notes | [Update](https://github.com/466102061/canvas-poster-sprite/blob/main/doc/update.md)
 + Text does not support art form, art form can be replaced by pictures.
 + Pictures resources support | HTTPS (HTTP attention to the problem of cross domain), only the web side support local resources (local service, please use the require import).
 + Pictures(preload=true)，can be first drawed to canvas.
